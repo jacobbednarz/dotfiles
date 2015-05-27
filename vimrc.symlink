@@ -15,6 +15,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Define bundles via GitHub repos.
+Plugin 'flazz/vim-colorschemes'
 Plugin 'itchyny/lightline.vim'
 Plugin 'croaky/vim-colors-github'
 Plugin 'kchmck/vim-coffee-script'
@@ -40,6 +41,7 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'editorconfig-vim'
 Plugin 'tpope/vim-commentary'
+Plugin 'wincent/command-t'
 
 " Required for Vundle.
 call vundle#end()
@@ -142,6 +144,9 @@ set completeopt=longest,menuone
 
 " Map NERDTree to a simpler key.
 map <C-n> :NERDTreeToggle<CR>
+
+" Map Command-T to ctrl+f
+map <C-f> :CommandT<CR>
 
 " File specific indentation.
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
