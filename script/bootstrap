@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# This should _really_ come from boxen.
+HOME_DIRECTORY="/Users/Jacob"
+DOTFILES_DIRECTORY="$HOME_DIRECTORY/.dotfiles"
+
+# Link all of the symlink files into the root.
+for f in *.symlink
+do
+  ln -s "$DOTFILES_DIRECTORY/$f" "$HOME_DIRECTORY/.`basename $f .symlink`"
+done

@@ -1,0 +1,14 @@
+require 'awesome_print'
+AwesomePrint.pry!
+
+# Use the ocean theme.
+Pry.config.theme = 'ocean'
+
+# Build the pry prompt.
+prompt = "ruby-#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}"
+Pry.config.prompt = [
+  proc { |obj, nest_level, _| "#{prompt} (#{obj}):#{nest_level} >> " },
+  proc { |obj, nest_level, _| "#{prompt} (#{obj}):#{nest_level}  * " }
+]
+
+Pry.config.print = proc { |output, value| output.puts "# => #{value.inspect}" }

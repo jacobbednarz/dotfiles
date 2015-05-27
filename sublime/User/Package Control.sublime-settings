@@ -1,0 +1,18 @@
+{
+	"installed_packages":
+	[
+		"BeautifyRuby",
+		"DocBlockr",
+		"Emmet",
+		"Git",
+		"Package Control",
+		"PhpDoc",
+		"Pretty JSON",
+		"Theme - Nexus",
+		"Theme - Soda"
+	],
+	"repositories":
+	[
+		"https://sublime.wbond.net/alpha/packages.json"
+	]
+}
