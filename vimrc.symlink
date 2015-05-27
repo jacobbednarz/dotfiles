@@ -15,6 +15,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Define bundles via GitHub repos.
+Plugin 'flazz/vim-colorschemes'
 Plugin 'itchyny/lightline.vim'
 Plugin 'croaky/vim-colors-github'
 Plugin 'kchmck/vim-coffee-script'
