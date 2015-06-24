@@ -42,22 +42,17 @@ if [[ $GIT_REPO_PATH != '' && $GIT_REPO_PATH != '~' && $GIT_REPO_PATH != "$HOME/
 
   GIT_SYMBOL=""
   if [[ "$GIT_REPO_PATH" != '.' && `git ls-files -m` != "" ]]; then
-    GIT_SYMBOL="$fg[red][ ✗ ]"
+    GIT_SYMBOL="$fg[red] ✗"
   else
-    GIT_SYMBOL="$fg[green][ ✔ ]"
+    GIT_SYMBOL="$fg[green] ✔ "
   fi
 
-  echo "$GIT_SYMBOL $fg[white]$GIT_BRANCH%{$reset_color%}@$fg[white]$GIT_COMMIT_ID"
+  echo "$fg[white]$GIT_BRANCH%{$reset_color%}@$fg[white]$GIT_COMMIT_ID $GIT_SYMBOL"
 fi
 }
 
 function get_pwd() {
-  directory="${PWD}"
-  if [[ "${PWD##*/}" == "Jacob" ]]; then
-    echo "~"
-  else
-    echo "${PWD##*/}"
-  fi
+echo "${PWD/#$HOME/~}"
 }
 
 function put_spacing() {
@@ -80,7 +75,7 @@ function put_spacing() {
 
 function precmd() {
 print -rP '
-$fg[cyan]%n$fg[white] in $fg[yellow]$(get_pwd)$(put_spacing)$(get_git_data)'
+$fg[yellow]$(get_pwd) $(get_git_data)'
 }
 
 #PROMPT='%{$reset_color%}λ '

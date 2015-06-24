@@ -178,3 +178,5 @@ let g:lightline = { 'colorscheme': 'wombat' }
 set nobackup
 set noswapfile
 
+" Automagically reload the files if altered outside of vim.
+set autoread
