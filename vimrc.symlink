@@ -43,6 +43,7 @@ Plugin 'editorconfig-vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'wincent/command-t'
 Plugin 'empanda/vim-varnish'
+Plugin 'Raimondi/delimitMate'
 
 " Required for Vundle.
 call vundle#end()
@@ -181,3 +182,7 @@ set noswapfile
 
 " Automagically reload the files if altered outside of vim.
 set autoread
+" Mark three back ticks as nested quotes in files where they are
+" expected. I.e. markdown and git commits.
+au FileType markdown let b:delimitMate_nesting_quotes = ['`']
+au FileType gitcommit let b:delimitMate_nesting_quotes = ['`']
