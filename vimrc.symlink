@@ -164,6 +164,10 @@ autocmd FileType md setlocal shiftwidth=4 tabstop=4
 au BufRead,BufNewFile *.json set ft=json syntax=javascript
 au BufRead,BufNewFile *.pp set syntax=puppet
 
+" Format git commits at the correct lengths.
+au FileType gitcommit set tw=72
+au FileType gitcommit set colorcolumn=72
+
 " Handle markdown files nicer.
 au BufRead,BufNewFile *.md setlocal textwidth=72
 autocmd BufRead,BufNewFile *.md set filetype=markdown
