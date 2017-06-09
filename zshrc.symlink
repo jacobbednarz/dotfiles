@@ -56,3 +56,6 @@ PROMPT='%{$reset_color%}❯ '
 # ZSH_THEME_GIT_PROMPT_CLEAN="$fg[green]"
 # ZSH_THEME_GIT_PROMPT_UNTRACKED="$fg[purple]"
 
+# Go.
+export GOPATH=$HOME/src/go
+export PATH=$GOPATH/bin:$PATH
