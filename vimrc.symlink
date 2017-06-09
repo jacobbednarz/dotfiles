@@ -161,6 +161,8 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
 
 " Map Command-T to ctrl+f
 map <C-f> :CommandT<CR>
+" Map tagbar to use F8
+nmap <F8> :TagbarToggle<CR>
 
 " File specific indentation.
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
