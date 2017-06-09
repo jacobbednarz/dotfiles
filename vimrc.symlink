@@ -43,6 +43,7 @@ Plugin 'editorconfig-vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'wincent/command-t'
 Plugin 'scrooloose/syntastic'
+Plugin 'rking/ag.vim'
 Plugin 'empanda/vim-varnish'
 Plugin 'Raimondi/delimitMate'
 
