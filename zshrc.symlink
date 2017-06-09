@@ -12,6 +12,7 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 # Use Vim, always.
 export EDITOR="vim"
 
+export HOMEBREW_CASK_OPTS="--caskroom=/opt/homebrew-cask/Caskroom"
 
 function get_git_data() {
   GIT_REPO_PATH=`git rev-parse --git-dir 2>/dev/null`
