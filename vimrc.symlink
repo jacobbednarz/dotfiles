@@ -174,7 +174,7 @@ endif
 set list listchars=tab:»·,trail:·,nbsp:·
 
 " Configure lightline.
-let g:lightline = { 'colorscheme': 'wombat' }
+let g:lightline = { 'colorscheme': 'Tomorrow_Night_Eighties' }
 
 " Stop vim creating backup files.
 set nobackup
