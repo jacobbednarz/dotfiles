@@ -1,11 +1,15 @@
 " Forget compatibility with Vi - Not important.
 set nocompatible
 
-" Fix some backspacing issues gVim has on Windows.
-set backspace=2
+set colorcolumn=72
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
 
-" Set a right margin of 80 for readability.
-set colorcolumn=80
+" No beeps
+set noerrorbells
 
 " Declare bundles are handled via Vundle.
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -37,7 +41,9 @@ Plugin 'editorconfig-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'rking/ag.vim'
+Plugin 'majutsushi/tagbar'
 Plugin 'jez/vim-github-hub'
+Plugin 'craigemery/vim-autotag'
 Plugin 'cespare/vim-toml'
 Plugin 'elzr/vim-json'
 Plugin 'empanda/vim-varnish'
@@ -48,10 +54,6 @@ Plugin 'google/vim-searchindex'
 " Required for Vundle.
 call vundle#end()
 
-filetype on
-filetype plugin on
-filetype indent on
-syntax on
 " Move around lines and selections of text.
 nnoremap <C-k> :m .+2<CR>==
 nnoremap <C-j> :m .-2<CR>==
@@ -128,9 +130,6 @@ set smartcase
 " Hard-wrap paragraphs of text.
 nnoremap <leader>q gqip
 
-" Enable code folding.
-set foldenable
-
 " Hide mouse when typing.
 set mousehide
 
@@ -145,17 +144,6 @@ set splitright
 " Session settings.
 set sessionoptions=resize,winpos,winsize,buffers,tabpages,folds,curdir,help
 
-" Shortcut for editing  vimrc file in a new tab.
-nmap <leader>ev :tabedit $MYVIMRC<cr>
-
-" Automatically change current directory to that of the file in the buffer.
-autocmd BufEnter * cd %:p:h
-
-" More useful command-line completion.
-set wildmenu
-
-" Auto-completion menu.
-set wildmode=list:longest
 " Map NERDTree to a simpler key.
 map <C-t> :NERDTreeToggle<CR>
 
