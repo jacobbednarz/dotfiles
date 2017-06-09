@@ -123,6 +123,10 @@ set foldenable
 " Hide mouse when typing.
 set mousehide
 
+if has('mouse')
+  set mouse=a
+endif
+
 " Split windows below the current window.
 set splitbelow
 set splitright
