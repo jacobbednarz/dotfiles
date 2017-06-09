@@ -162,6 +162,9 @@ au BufRead,BufNewFile *.json set ft=json syntax=javascript
 au BufRead,BufNewFile *.md setlocal textwidth=80
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 
+" Handle fenced code blocks in Markdown better.
+let g:markdown_fenced_languages = ['c', 'css', 'html', 'ruby', 'bash=sh', 'dns', 'go', 'sql']
+
 " Source the vimrc file after saving it.
 if has("autocmd")
   augroup myvimrchooks
