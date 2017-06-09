@@ -5,19 +5,7 @@ fi
 
 # Shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.oh-my-zsh
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="crunch"
-
-# Pull in the zshrc aliases.
-source ~/.zshrc_alias
-
-# Use `z` for quick swapping between directories.
-source `brew --prefix`/etc/profile.d/z.sh
-
-source $ZSH/oh-my-zsh.sh
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 # Use Vim, always.
 export EDITOR="vim"
