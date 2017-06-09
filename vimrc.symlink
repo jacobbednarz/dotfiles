@@ -39,6 +39,7 @@ Plugin 'cespare/vim-toml'
 Plugin 'elzr/vim-json'
 Plugin 'empanda/vim-varnish'
 Plugin 'Raimondi/delimitMate'
+Plugin 'terryma/vim-multiple-cursors'
 Plugin 'google/vim-searchindex'
 
 " Required for Vundle.
