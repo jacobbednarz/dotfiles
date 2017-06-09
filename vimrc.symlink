@@ -42,6 +42,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'editorconfig-vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'wincent/command-t'
+Plugin 'empanda/vim-varnish'
 
 " Required for Vundle.
 call vundle#end()
