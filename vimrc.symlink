@@ -68,14 +68,13 @@ set timeoutlen=500
 " Switch between buffers without saving.
 set hidden
 
-" Enable 256 colours within vim.
-set t_Co=256
-
 " Set the color scheme.
-colorscheme Tomorrow-Night-Eighties
+let g:hybrid_reduced_contrast = 1
+set background=dark
+colorscheme hybrid
 
 " Set font type and size.
-set guifont=Monaco:h12
+set guifont=Operator\ Mono\ Light:h14
 
 " Tab stuff.
 set tabstop=2
