@@ -3,7 +3,6 @@ if [[ -f /opt/boxen/env.sh ]]; then
   source /opt/boxen/env.sh
 fi
 
-# Shortcut to this dotfiles path is $ZSH
 # Don't ask me if I wanna YOLO `rm` on a directory.
 setopt rm_star_silent
 export ZSH=$HOME/.oh-my-zsh
