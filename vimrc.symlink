@@ -16,6 +16,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Define bundles via GitHub repos.
 Plugin 'flazz/vim-colorschemes'
+Plugin 'vim-ruby/vim-ruby'
 Plugin 'itchyny/lightline.vim'
 Plugin 'croaky/vim-colors-github'
 Plugin 'kchmck/vim-coffee-script'
@@ -44,6 +45,8 @@ Plugin 'tpope/vim-commentary'
 Plugin 'wincent/command-t'
 Plugin 'scrooloose/syntastic'
 Plugin 'rking/ag.vim'
+Plugin 'cespare/vim-toml'
+Plugin 'elzr/vim-json'
 Plugin 'empanda/vim-varnish'
 Plugin 'Raimondi/delimitMate'
 
