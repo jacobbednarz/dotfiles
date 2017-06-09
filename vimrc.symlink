@@ -17,6 +17,7 @@ Plugin 'gmarik/Vundle.vim'
 " Define bundles via GitHub repos.
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'itchyny/lightline.vim'
+Plugin 'w0ng/vim-hybrid'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-endwise'
