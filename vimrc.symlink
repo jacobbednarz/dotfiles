@@ -113,7 +113,7 @@ set linespace=2
 " Better line wrapping.
 set wrap
 set linebreak
-set textwidth=80
+set textwidth=72
 
 " Set incremental searching.
 set incsearch
