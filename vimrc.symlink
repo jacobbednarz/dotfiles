@@ -49,6 +49,7 @@ Plugin 'cespare/vim-toml'
 Plugin 'elzr/vim-json'
 Plugin 'empanda/vim-varnish'
 Plugin 'Raimondi/delimitMate'
+Plugin 'google/vim-searchindex'
 
 " Required for Vundle.
 call vundle#end()
