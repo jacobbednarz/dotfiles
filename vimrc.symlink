@@ -125,6 +125,7 @@ set mousehide
 
 " Split windows below the current window.
 set splitbelow
+set splitright
 
 " Session settings.
 set sessionoptions=resize,winpos,winsize,buffers,tabpages,folds,curdir,help
