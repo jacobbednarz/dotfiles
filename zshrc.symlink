@@ -58,3 +58,9 @@ PROMPT='%{$reset_color%}❯ '
 # Go.
 export GOPATH=$HOME/src/go
 export PATH=$GOPATH/bin:$PATH
+
+# fzf.
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS='--height 20%'
+# Setting ag as the default source for fzf.
+export FZF_DEFAULT_COMMAND='ag -g ""'
