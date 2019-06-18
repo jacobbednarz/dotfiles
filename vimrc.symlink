@@ -58,18 +58,9 @@ Plugin 'joshdick/onedark.vim'
 " Required for Vundle.
 call vundle#end()
 
-" Move around lines and selections of text.
-nnoremap <C-k> :m .+2<CR>==
-nnoremap <C-j> :m .-2<CR>==
-inoremap <C-k> <Esc>:m .+1<CR>==gi
-inoremap <C-j> <Esc>:m .-2<CR>==gi
-vnoremap <C-k> :m '>+1<CR>gv=gv
-vnoremap <C-j> :m '<-2<CR>gv=gv
+let g:move_map_keys = 0
+let g:move_key_modifier = 'C-A'
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 " Ale settings.
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -240,7 +231,8 @@ endif
 set list listchars=tab:»·,trail:·,nbsp:·
 
 " Configure lightline.
-let g:lightline = { 'colorscheme': 'Tomorrow_Night_Eighties' }
+" let g:lightline = { 'colorscheme': 'Tomorrow_Night_Eighties' }
+let g:lightline = { 'colorscheme': 'powerline' }
 
 " Stop vim creating backup files.
 set nobackup
