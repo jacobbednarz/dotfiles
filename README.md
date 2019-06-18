@@ -1,5 +1,9 @@
-# simple dots
+# dotfiles
 
-These are my _simple_ dotfiles which are loaded in using Boxen.
+Because everyone has them.
 
-My full dotfiles can be found [here](https://github.com/jacobbednarz/dotfiles).
+### Setup
+
+```
+script/bootstrap
+```
