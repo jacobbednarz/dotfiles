@@ -1,3 +1,10 @@
+require 'pp'
+
+if `gem list -i awesome_print`.chomp == 'true'
+  require 'awesome_print'
+  AwesomePrint.irb!
+end
+
 # configure irb
 IRB.conf[:PROMPT_MODE] = :SIMPLE
 
