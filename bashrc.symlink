@@ -1,0 +1,87 @@
+# shellcheck shell=bash
+
+# don't trim bash history. useful for fzf
+export HISTFILESIZE=
+export HISTSIZE=
+
+# colors for output
+reset=$(tput sgr0)
+green=$(tput setaf 2)
+cyan=$(tput sgr0)$(tput setaf 6)
+red=$(tput setaf 1)
+white=$(tput setaf 7)
+yellow=$(tput setaf 3)
+
+# pretty font icons
+if [ -d ~/src/nerd-fonts/bin/scripts/lib ]; then
+  source ~/src/nerd-fonts/bin/scripts/lib/i_dev.sh
+  source ~/src/nerd-fonts/bin/scripts/lib/i_oct.sh
+fi
+
+# lazy load version managers
+if [ -e ~/.sandboxrc ]; then
+  source /usr/bin/sandboxd
+fi
+
+# hub
+eval "$(hub alias -s)"
+
+export CLICOLOR=1
+export TERM=xterm-256color
+
+# don't leave dupes in my history.
+export HISTCONTROL=ignoredups
+
+# (neo)vim configuration.
+alias vim=nvim
+export NVIM_TUI_ENABLE_TRUE_COLOR=1
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
+function get_git_data() {
+  GIT_REPO_PATH=$(git rev-parse --git-dir 2>/dev/null)
+  if [[ $GIT_REPO_PATH != '' && $GIT_REPO_PATH != '~' && $GIT_REPO_PATH != "$HOME/.git" ]]; then
+    GIT_COMMIT_ID=$(git rev-parse --short HEAD 2>/dev/null)
+    GIT_BRANCH=$(git symbolic-ref -q HEAD | sed 's/refs\/heads\///')
+    GIT_SYMBOL=""
+    if [[ "$GIT_REPO_PATH" != '.' && $(git ls-files -m) != "" ]]; then
+      GIT_SYMBOL='\033[1;31m'$i_oct_x
+    else
+      GIT_SYMBOL='\033[1;32m'$i_oct_check
+    fi
+
+    echo -e "${GIT_BRANCH}@${GIT_COMMIT_ID} $GIT_SYMBOL"
+  fi
+}
+
+function get_ruby_version() {
+  ruby_version=$(ruby --version | cut -f2 -d\ )
+  echo "\[$txtred\]${i_oct_ruby} $ruby_version\[$txtrst\]"
+}
+
+function get_node_version() {
+  node_version=$(node --version | cut -f2 -d\ )
+  echo "\[$txtgrn\]${i_dev_nodejs_small} $node_version\[$txtrst\]"
+}
+
+PS1='\n\[$yellow\]\w\[$reset\] $(get_git_data) \[$reset\]\n$ '
+
+# Go.
+export GOPATH=$HOME/src/go
+export PATH=$GOPATH/bin:$PATH
+
+# fzf.
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export FZF_DEFAULT_OPTS='--height 20% -e'
+# Setting ag as the default source for fzf.
+export FZF_DEFAULT_COMMAND='ag -g ""'
+
+# Use LibreSSL
+if [ -d /usr/local/opt/libressl/bin ]; then
+ export PATH="/usr/local/opt/libressl/bin:$PATH"
+fi
+
+if [ -e ~/.bashrc_alias ]; then
+  source ~/.bashrc_alias
+fi

@@ -1,0 +1,4 @@
+# reload the configuration
+function reload() {
+  source ~/.bashrc
+}
