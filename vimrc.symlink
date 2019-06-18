@@ -1,12 +1,18 @@
 " Forget compatibility with Vi - Not important.
 set nocompatible
 
+" Make backspace work sanely like other apps
+set backspace=indent,eol,start
+
 set colorcolumn=72
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 filetype on
 filetype plugin on
 filetype indent on
 syntax on
+
+" Always use unix line endings.
+set ff=unix
 
 " No beeps
 set noerrorbells
@@ -88,7 +94,7 @@ set background=dark
 colorscheme hybrid
 
 " Set font type and size.
-set guifont=Operator\ Mono\ Light:h14
+set guifont=Fira\ Code:h15
 
 " Tab stuff.
 set tabstop=2
@@ -202,6 +208,9 @@ let g:lightline = { 'colorscheme': 'Tomorrow_Night_Eighties' }
 " Stop vim creating backup files.
 set nobackup
 set noswapfile
+
+" Make :W to :w
+cnoreabbrev W w
 
 " Automagically reload the files if altered outside of vim.
 set autoread
