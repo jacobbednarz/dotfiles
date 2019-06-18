@@ -25,37 +25,35 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Define bundles via GitHub repos.
-Plugin 'vim-ruby/vim-ruby'
+Plugin 'fatih/vim-go'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'itchyny/lightline.vim'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-surround'
-Plugin 'rodjek/vim-puppet'
-Plugin 'vim-scripts/ctags.vim'
 Plugin 'tpope/vim-commentary'
-Plugin 'xenoterracide/html.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'fatih/vim-go'
-Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'godlygeek/tabular'
+Plugin 'ervandew/supertab' " Tab completion
 Plugin 'editorconfig-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'rking/ag.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'jez/vim-github-hub'
-Plugin 'craigemery/vim-autotag'
-Plugin 'cespare/vim-toml'
-Plugin 'elzr/vim-json'
-Plugin 'empanda/vim-varnish'
 Plugin 'Raimondi/delimitMate'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'google/vim-searchindex'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rhubarb' " Needed for vim-fugitive
+Plugin 'bogado/file-line' " Open files with line numbers on the end
+Plugin 'mxw/vim-jsx'
+Plugin 'matze/vim-move' " Sublime-like move around blocks
+
+" Themes
+Plugin 'w0ng/vim-hybrid'
+Plugin 'joshdick/onedark.vim'
 
 " Required for Vundle.
 call vundle#end()
