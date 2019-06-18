@@ -176,6 +176,7 @@ autocmd FileType js setlocal shiftwidth=2 tabstop=2
 autocmd FileType md setlocal shiftwidth=4 tabstop=4
 au BufRead,BufNewFile *.json set ft=json syntax=javascript
 au BufRead,BufNewFile *.pp set syntax=puppet
+au BufRead,BufNewFile *.bats set syntax=sh
 
 " Format git commits at the correct lengths.
 au FileType gitcommit set tw=72
