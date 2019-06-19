@@ -85,3 +85,7 @@ fi
 if [ -e ~/.bashrc_alias ]; then
   source ~/.bashrc_alias
 fi
+
+if [ -e ~/.dockerfunc ]; then
+  source ~/.dockerfunc
+fi
