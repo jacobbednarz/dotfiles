@@ -1,0 +1,95 @@
+# Create dedicated "sandboxes" for each language/tool that I manage via
+# asdf-vm.
+#
+# This could be a single `sandbox_init_asdf` however it isn't as
+# intuitive as `sandbox <language>`.
+
+sandbox_init_asdf() {
+  source $(brew --prefix asdf)/asdf.sh
+}
+
+sandbox_init_ruby() {
+  source $(brew --prefix asdf)/asdf.sh
+}
+
+sandbox_init_golang() {
+  source $(brew --prefix asdf)/asdf.sh
+}
+
+sandbox_init_node() {
+  source $(brew --prefix asdf)/asdf.sh
+}
+
+sandbox_init_php() {
+  source $(brew --prefix asdf)/asdf.sh
+}
+
+sandbox_init_lua() {
+  source $(brew --prefix asdf)/asdf.sh
+}
+
+sandbox_init_python() {
+  source $(brew --prefix asdf)/asdf.sh
+}
+
+sandbox_init_terraform() {
+  source $(brew --prefix asdf)/asdf.sh
+}
+
+sandbox_init_packer() {
+  source $(brew --prefix asdf)/asdf.sh
+}
+
+sandbox_init_redis() {
+  source $(brew --prefix asdf)/asdf.sh
+}
+
+# ruby
+sandbox_hook ruby ruby
+sandbox_hook ruby bundle
+sandbox_hook ruby gem
+
+# node
+sandbox_hook node node
+sandbox_hook node npm
+
+# golang
+sandbox_hook golang go
+sandbox_hook golang gocode
+sandbox_hook golang gopkgs
+sandbox_hook golang go-outline
+sandbox_hook golang go-symbols
+sandbox_hook golang guru
+sandbox_hook golang gorename
+sandbox_hook golang dlv
+sandbox_hook golang gocode-gomod
+sandbox_hook golang godef
+sandbox_hook golang goreturns
+sandbox_hook golang golint
+sandbox_hook golang gopls
+sandbox_hook golang gotests
+sandbox_hook golang gomodifytags
+sandbox_hook golang impl
+sandbox_hook golang fillstruct
+sandbox_hook golang goplay
+sandbox_hook golang godoctor
+
+# php
+sandbox_hook php php
+
+# lua
+sandbox_hook lua lua
+
+# python
+sandbox_hook python python
+
+# terraform
+sandbox_hook terraform terraform
+
+# packer
+sandbox_hook packer packer
+
+# redis
+sandbox_hook redis redis
+sandbox_hook redis redis-cli
+sandbox_hook redis redis-server
