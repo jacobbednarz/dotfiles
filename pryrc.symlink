@@ -14,6 +14,10 @@ Pry.config.prompt = [
 
 Pry.config.print = proc { |output, value| output.puts "# => #{value.inspect}" }
 
+Pry.config.commands.command 'caller_clean', 'show call stack omitting any external gems' do
+  output.puts caller.reject! { |line| line.include?('/gem') }.join("\n")
+end
+
 if defined?(PryByebug)
   Pry.commands.alias_command 's', 'step'
   Pry.commands.alias_command 'n', 'next'

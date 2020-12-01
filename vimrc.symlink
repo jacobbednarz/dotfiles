@@ -54,6 +54,7 @@ Plugin 'matze/vim-move' " Sublime-like move around blocks
 " Themes
 Plugin 'w0ng/vim-hybrid'
 Plugin 'joshdick/onedark.vim'
+Plugin 'arcticicestudio/nord-vim'
 
 " Required for Vundle.
 call vundle#end()
@@ -91,6 +92,9 @@ augroup END
 " Don't create a scrollbar on the left - usually makes NERDTree look average.
 set go-=L
 
+" Close NERDTree once a file is opened
+let g:NERDTreeQuitOnOpen=1
+
 " Write the old file out when switching between files.
 set autowrite
 
@@ -107,17 +111,11 @@ set hidden
 set background=dark
 " colorscheme hybrid
 " let g:hybrid_reduced_contrast = 1
-colorscheme onedark
+colorscheme nord
 
 if (has("nvim"))
   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-if (has("termguicolors"))
-  set termguicolors
 endif
 
 " Set font type and size.
@@ -201,13 +199,19 @@ autocmd FileType php setlocal shiftwidth=2 tabstop=2
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
 autocmd FileType js setlocal shiftwidth=2 tabstop=2
 autocmd FileType md setlocal shiftwidth=4 tabstop=4
-au BufRead,BufNewFile *.json set ft=json syntax=javascript
-au BufRead,BufNewFile *.pp set syntax=puppet
-au BufRead,BufNewFile *.bats set syntax=sh
+
+" Ruby-like files that are ruby but not .rb
+autocmd BufEnter .pryrc :setlocal filetype=ruby
 
 " Format git commits at the correct lengths.
 au FileType gitcommit set tw=72
 au FileType gitcommit set colorcolumn=72
+
+" Deal with some lesser known filetypes and syntax highlighting
+autocmd BufRead,BufNewFile *.strace set filetype=strace
+au BufRead,BufNewFile *.json set ft=json syntax=javascript
+au BufRead,BufNewFile *.pp set syntax=puppet
+au BufRead,BufNewFile *.bats set syntax=sh
 
 " Handle markdown files nicer.
 au BufRead,BufNewFile *.md setlocal textwidth=72

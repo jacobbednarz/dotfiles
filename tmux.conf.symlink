@@ -33,7 +33,8 @@ bind-key >      swap-window -t :+
 # reload configuration
 bind R source-file ~/.tmux.conf \; display 'Reloaded'
 
-# set -g default-terminal 'screen-256color'
+set -g default-terminal "xterm-256color"
+set -ga terminal-overrides ",xterm-256color:Tc"
 
 # support system pasteboard on OS X
 set-option -g default-command "$(which reattach-to-user-namespace > /dev/null && echo reattach-to-user-namespace -l $SHELL || echo exec $SHELL -l)"
@@ -58,18 +59,10 @@ set -g update-environment ""
 set -g mouse on
 bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e'"
 
-# status bar
-set-option -g status-fg colour15
-set-option -g status-bg colour236
+# This is deactivated because styles come from `lucasfcosta/nord-tmux`
+set -g status-left "#[fg=black,bg=blue,bold] #S#[fg=blue,bg=black,nobold,noitalics,nounderscore]"
+set -g status-right " #H "
 
-set-option -g window-status-activity-attr bold
-set-option -g message-bg colour221
-set-option -g message-attr bold
-
-set-option -g status-left '#[bg=colour148]#[fg=colour22]  #S  #[default]'
-set-option -g status-right '#(which _wemux_status &> /dev/null && _wemux_status || wemux status_users) #[fg=colour148]#(date "+%H:%M")#[default] #[bg=colour252]#[fg=colour236] #(whoami)@#h #[default]'
-set-option -g status-interval 5
-set-option -g status-right-length 60
 
 set -g window-status-format "#[fg=colour240,bg=colour234] #I #[fg=white]#W #[fg=colour240]#F "
 set -g window-status-current-format "#[fg=colour16,bg=colour39,bold] #I #W #[fg=colour25]#F "
@@ -110,6 +103,9 @@ set-option -g default-command "tmux rename-window bash; reattach-to-user-namespa
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'arcticicestudio/nord-tmux'
+
+set -g @nord_tmux_no_patched_font "1"
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of
 # tmux.conf)
