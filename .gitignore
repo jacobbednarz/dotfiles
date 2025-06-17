@@ -1,34 +1,13 @@
-# Damn macs
 .DS_Store
 
-# Not required
 *.VimballRecord
 *.netrwhist
 *.cache
 swap-window
 
-# Too many secrets in this directory
-ssh/
+.config/fish/fish_variables
 
-# No need to version control the bundles dir
-vim/vim.symlink/bundle/*
-
-# No point in versioning the history or zsh contents
-bash/.bash_history
-zsh/.zsh_history
-zsh/oh-my-zsh
-
-# Extra unrequired shit
-zsh/.DS_Store
-zsh/.oh-my-zsh
-zsh/.zcompdump
-zsh/.zsh-update
-zsh/.zshrc_alias
-
-# Once these exist, I don't want them publicly updated
-net/netrc.symlink
-bash/bashrc.symlink
-curl/curlrc.symlink
-
-# No need to version control the bundles directory
-vim/vim.symlink/bundle/*
+.gnupg/dirmngr.conf
+.gnupg/pubring.kbx
+.gnupg/pubring.kbx~
+.gnupg/trustdb.gpg

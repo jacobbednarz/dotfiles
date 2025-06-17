@@ -1,7 +1,0 @@
-{
-  // Additional arguments you can specify into the application
-  "phpcs_additional_args": {
-    "--standard": "Drupal",
-    "-n": ""
-  }
-}
