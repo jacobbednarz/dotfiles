@@ -1,4 +1,5 @@
 brew "autojump"
+brew "awscli"
 brew "bashdb"
 brew "jacobbednarz/homebrew/cf-vault"
 brew "coreutils"
