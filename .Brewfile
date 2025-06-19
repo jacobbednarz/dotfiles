@@ -15,6 +15,7 @@ brew "fish" # should be installed as part of bootstrapping a machine, but just i
 brew "gh"
 brew "git"
 brew "glances" # modern top/htop
+brew "gnupg"
 brew "golangci-lint"
 brew "goreleaser"
 brew "graphviz"
