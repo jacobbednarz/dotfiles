@@ -5,9 +5,13 @@
 *.cache
 swap-window
 
-.config/fish/fish_variables
+.config/fish/*
+!.config/fish/config.fish
 
-.gnupg/dirmngr.conf
-.gnupg/pubring.kbx
-.gnupg/pubring.kbx~
-.gnupg/trustdb.gpg
+.gnupg/*
+!.gnupg/gpg.conf
+!.gnupg/gpg-agent.conf
+
+.ssh/*
+!.ssh/config
+!.ssh/config.d/*

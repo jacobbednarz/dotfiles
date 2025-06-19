@@ -3,6 +3,12 @@ name = "Jacob Bednarz"
 email = "jacob.bednarz@gmail.com"
 signingkey = "9846E532AF49C75E"
 
+[commit]
+gpgsign = true
+
+[tag]
+gpgSign = true
+
 [alias]
 br = "branch"
 branches = "branch -a --color -v"
