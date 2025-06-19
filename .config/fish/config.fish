@@ -2,16 +2,11 @@
 set fish_greeting
 
 # autojump
-[ -f /opt/homebrew/bin/autojump/share/autojump/autojump.fish ]; and source /opt/homebrew/bin/autojump/share/autojump/autojump.fish
+[ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
 
 # hub
 if command -v hub &> /dev/null
     eval (hub alias -s)
-end
-
-# autojump
-if command -v hub &> /dev/null
-    [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
 end
 
 # rg
