@@ -15,3 +15,5 @@ swap-window
 .ssh/*
 !.ssh/config
 !.ssh/config.d/*
+
+.aws/*
