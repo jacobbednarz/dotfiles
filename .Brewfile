@@ -1,10 +1,10 @@
-tap "jacobbednarz/homebrew"
+tap "jacobbednarz/tap"
 tap "ycd/tap"
 
 brew "autojump"
 brew "awscli"
 brew "bashdb"
-brew "jacobbednarz/homebrew/cf-vault"
+brew "jacobbednarz/tap/cf-vault"
 brew "coreutils"
 brew "curl"
 brew "delve" # Go debugger
