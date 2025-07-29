@@ -87,12 +87,16 @@ else
   print_info "fish is an available shell"
 fi
 
-if [ "$SHELL" != "/opt/homebrew/bin/fish" ]; then
-  print_info "updating default shell for $USER"
-  chsh -s $(which fish)
-  print_success "default shell updated"
+if [ -z "$CI" ]; then
+  if [ "$SHELL" != "/opt/homebrew/bin/fish" ]; then
+    print_info "updating default shell for $USER"
+    chsh -s $(which fish)
+    print_success "default shell updated"
+  else
+    print_info "fish is already the default shell"
+  fi
 else
-  print_info "fish is already the default shell"
+  print_info "skipping shell adjustment as we are running in CI"
 fi
 
 print_info "linking dotfiles"

@@ -1,11 +1,14 @@
+tap "jacobbednarz/tap"
+tap "ycd/tap"
+
 brew "autojump"
 brew "awscli"
 brew "bashdb"
-brew "jacobbednarz/homebrew/cf-vault"
+brew "jacobbednarz/tap/cf-vault"
 brew "coreutils"
 brew "curl"
 brew "delve" # Go debugger
-brew "dnstrace"
+# brew "dnstrace" # forumula missing in action
 brew "doggo" # modern dig
 brew "ycd/tap/dstp"
 brew "dstp" # common reachability checks for your site

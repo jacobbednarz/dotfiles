@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  installer:
+    runs-on: macos-latest 
+    steps:
+    - uses: actions/checkout@v4
+    - name: Cleanup existing files
+      run: rm -rf ~/.gitconfig
+    - name: Run installer
+      run: ./install.sh
