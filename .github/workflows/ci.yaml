@@ -1,3 +1,5 @@
+name: CI
+
 on:
   workflow_dispatch:
   push:
@@ -10,6 +12,9 @@ on:
 jobs:
   test:
     runs-on: macos-latest 
+    defaults:
+      run:
+        shell: fish
     steps:
     - uses: actions/checkout@v4
     - name: Run installer
