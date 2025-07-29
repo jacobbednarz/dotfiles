@@ -1,21 +1,9 @@
-[user]
-name = "Jacob Bednarz"
-email = "jacob.bednarz@gmail.com"
-signingkey = "9846E532AF49C75E"
-
-[commit]
-gpgsign = true
-
-[tag]
-gpgSign = true
-
 [alias]
 br = "branch"
 branches = "branch -a --color -v"
 bump = "commit -m 'Bump' --allow-empty"
 ci = "commit"
 co = "checkout"
-commit = "commit -S"
 contributors = "shortlog --summary --numbered"
 cp = "cherry-pick"
 credit = "\"!f() { git commit --amend --author \"$1 <$2>\" -C HEAD } f\""
@@ -123,3 +111,6 @@ version = 2
 
 [advice]
 detachedHead = false
+
+[includeIf "gitdir:~/src/"]
+path = ~/.gitconfig-personal
