@@ -1,0 +1,66 @@
+{
+  "icon_theme": "Catppuccin Frappé",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "buffer_font_family": "Berkeley Mono",
+  "theme": {
+    "mode": "dark",
+    "light": "Nord",
+    "dark": "Catppuccin Frappé - No Italics"
+  },
+  "notification_panel": {
+    "button": false
+  },
+  "chat_panel": {
+    "button": "never"
+  },
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false,
+    "selections_menu": false,
+    "agent_review": true,
+    "code_actions": false
+  },
+  "languages": {
+    "JSONC": {
+      "tab_size": 2
+    },
+    "Python": {
+      "formatter": { "external": { "command": "black", "arguments": ["-"] } },
+      "language_servers": ["pyright"]
+    }
+  },
+  "lsp": {
+    "pyright": {
+      "settings": {
+        "python": {
+          "pythonPath": ".venv/bin/python"
+        }
+      }
+    }
+  },
+  "file_types": {
+    "Dockerfile": ["Dockerfile*"]
+  },
+  "wrap_guides": [72, 80],
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "project_panel": {
+    "dock": "right",
+    "default_width": 240,
+    "entry_spacing": "standard",
+    "indent_guides": {
+      "show": "never"
+    }
+  },
+  "agent": {
+    "enabled": false,
+    "button": false
+  },
+  "outline_panel": {
+    "default_width": 300,
+    "dock": "left"
+  }
+}
