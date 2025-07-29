@@ -1,9 +1,6 @@
 # turn off the damn greeting
 set fish_greeting
 
-# autojump
-[ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
-
 # hub
 if command -v hub &> /dev/null
     eval (hub alias -s)
@@ -20,6 +17,12 @@ eval (/opt/homebrew/bin/brew shellenv)
 set -gx GPG_TTY (tty)
 set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
+
+fish_add_path /Users/jacob.bednarz/.dotnet/tools
+fish_add_path "/Users/jacob.bednarz/.local/bin" # python and other tools that use XDG
+
+# smarter `cd`
+zoxide init fish | source
 
 function fish_prompt
     set -l last_pipestatus $pipestatus
@@ -84,5 +87,5 @@ function _reload_yubikey
 end
 
 function jwt
-   ruby -rjson -rbase64 -e "ARGV[0].split('.')[0,2].each_with_index { |f, i| j = JSON.parse(Base64.urlsafe_decode64(f)); jj j; break if i.zero? && j.key?('enc')}" $argv[1]
+    ruby -rjson -rbase64 -rzlib -rstringio -e "ARGV[0].split('.')[0,2].each_with_index { |f, i| begin; j = JSON.parse(Base64.urlsafe_decode64(f)); rescue JSON::ParserError; j = JSON.parse(Zlib::GzipReader.new(StringIO.new(Base64.urlsafe_decode64(f))).read); end; jj j; break if i.zero? && j.key?('enc')}" $argv[1]
 end

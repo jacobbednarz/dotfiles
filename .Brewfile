@@ -1,13 +1,13 @@
 tap "jacobbednarz/tap"
 tap "ycd/tap"
 
-brew "autojump"
 brew "awscli"
 brew "bashdb"
 brew "jacobbednarz/tap/cf-vault"
 brew "coreutils"
 brew "curl"
 brew "delve" # Go debugger
+brew "dotnet"
 # brew "dnstrace" # forumula missing in action
 brew "doggo" # modern dig
 brew "ycd/tap/dstp"
@@ -52,6 +52,7 @@ brew "whois"
 brew "ykman"
 brew "yq"
 brew "yubikey-agent"
+brew "zoxide" # better `cd`
 
 cask "1password"
 cask "1password-cli"
@@ -68,6 +69,7 @@ cask "loop"
 cask "lunar"
 cask "mitmproxy"
 cask "monodraw"
+cask "orbstack"
 cask "postico"
 cask "proxyman"
 cask "raycast"
