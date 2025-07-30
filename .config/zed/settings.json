@@ -28,6 +28,14 @@
     "Python": {
       "formatter": { "external": { "command": "black", "arguments": ["-"] } },
       "language_servers": ["pyright"]
+    },
+    "Fish": {
+      "tab_size": 4,
+      "formatter": {
+        "external": {
+          "command": "fish_indent"
+        }
+      }
     }
   },
   "lsp": {

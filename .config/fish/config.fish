@@ -2,13 +2,13 @@
 set fish_greeting
 
 # hub
-if command -v hub &> /dev/null
+if command -v hub &>/dev/null
     eval (hub alias -s)
 end
 
 # rg
-if command -v fzf &> /dev/null && command -v rg &> /dev/null
-    set -gx FZF_DEFAULT_COMMAND  'rg --files --no-ignore-vcs --hidden'
+if command -v fzf &>/dev/null && command -v rg &>/dev/null
+    set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore-vcs --hidden'
 end
 
 # source homebrew
@@ -18,7 +18,7 @@ set -gx GPG_TTY (tty)
 set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
-fish_add_path /Users/jacob.bednarz/.dotnet/tools
+fish_add_path "/Users/jacob.bednarz/.dotnet/tools"
 fish_add_path "/Users/jacob.bednarz/.local/bin" # python and other tools that use XDG
 
 # smarter `cd`
@@ -32,6 +32,7 @@ function fish_prompt
     set -l color_cwd $fish_color_cwd
     set -l prefix
     set -l suffix '$'
+
     if contains -- $USER root toor
         if set -q fish_color_cwd_root
             set color_cwd $fish_color_cwd_root
@@ -56,34 +57,36 @@ function reload
         _reload_shell
     else
         switch $argv[1]
-        case 'all'
-            _reload_shell
-            _reload_direnv
-        case 'yubikey'
-            _reload_yubikey
-        case 'direnv'
-            _reload_direnv
-        case '*'
-            _reload_shell
+            case all
+                _reload_shell
+                _reload_direnv
+            case yubikey
+                _reload_yubikey
+            case direnv
+                _reload_direnv
+            case '*'
+                _reload_shell
         end
     end
 end
 
 function _reload_shell
-    source ~/.config/fish/config.fish;
+    source ~/.config/fish/config.fish
+
     echo config reloaded
 end
 
 function _reload_direnv
-   direnv allow;
-   echo direnv reloaded
+    direnv allow
+
+    echo direnv reloaded
 end
 
 function _reload_yubikey
-   rm -r ~/.gnupg/private-keys-v1.d
-   gpgconf --kill gpg-agent
-   killall gpg-agent
-   gpg-agent --daemon
+    rm -r ~/.gnupg/private-keys-v1.d
+    gpgconf --kill gpg-agent
+    killall gpg-agent
+    gpg-agent --daemon
 end
 
 function jwt
