@@ -11,6 +11,11 @@ if command -v fzf &>/dev/null && command -v rg &>/dev/null
     set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore-vcs --hidden'
 end
 
+# fzf
+if command -v fzf &>/dev/null
+    fzf --fish | source
+end
+
 # source homebrew
 eval (/opt/homebrew/bin/brew shellenv)
 
@@ -22,7 +27,9 @@ fish_add_path "/Users/jacob.bednarz/.dotnet/tools"
 fish_add_path "/Users/jacob.bednarz/.local/bin" # python and other tools that use XDG
 
 # smarter `cd`
-zoxide init fish | source
+if command -v zoxide &>/dev/null
+    zoxide init fish | source
+end
 
 function fish_prompt
     set -l last_pipestatus $pipestatus
