@@ -1,3 +1,6 @@
+title = " "
+macos-titlebar-proxy-icon = "hidden"
+
 shell-integration = fish
 
 theme = "catppuccin-frappe"
@@ -8,6 +11,7 @@ font-style-bold = Bold
 font-style-italic = Oblique
 font-style-bold-italic = Bold Oblique
 font-size = 15
+adjust-cell-height = 8
 
 cursor-style = block
 mouse-hide-while-typing = true

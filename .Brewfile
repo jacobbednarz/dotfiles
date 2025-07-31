@@ -15,6 +15,7 @@ brew "dstp" # common reachability checks for your site
 brew "dust" # modern du
 brew "fd" # modern find
 brew "fish" # should be installed as part of bootstrapping a machine, but just in case
+brew "fzf" # better file explorer
 brew "gh"
 brew "git"
 brew "glances" # modern top/htop
@@ -29,8 +30,11 @@ brew "jo"
 brew "jq"
 brew "kubernetes-cli"
 brew "kubie"
+brew "lazygit"
+brew "luarocks"
 brew "mise"
 brew "mtr"
+brew "neovim"
 brew "pinentry"
 brew "pinentry-mac"
 brew "pstree"
@@ -46,6 +50,7 @@ brew "solargraph"
 brew "sqlite"
 brew "stow" # should be installed as part of bootstrapping a machine, but just in case
 brew "tree"
+brew "tmux"
 brew "websocat" # toolkit for websockets
 brew "wget"
 brew "whois"
