@@ -7,3 +7,5 @@ README
 install.sh
 
 .rubocop.yml
+
+\.grit
