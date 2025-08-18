@@ -31,11 +31,16 @@ if command -v zoxide &>/dev/null
     zoxide init fish | source
 end
 
+# add grit tooling to the $PATH
+if command -v grit &>/dev/null
+    fish_add_path "$HOME/.grit/bin"
+end
+
 function fish_prompt
     set -l last_pipestatus $pipestatus
     set -l normal (set_color normal)
 
-    # Color the prompt differently when we're root
+    # colour the prompt differently when we're root
     set -l color_cwd $fish_color_cwd
     set -l prefix
     set -l suffix '$'
@@ -47,13 +52,13 @@ function fish_prompt
         set suffix '#'
     end
 
-    # If we're running via SSH, change the host color.
+    # if we're running via SSH, change the host color.
     set -l color_host $fish_color_host
     if set -q SSH_TTY
         set color_host $fish_color_host_remote
     end
 
-    # Write pipestatus
+    # write pipestatus
     set -l prompt_status (__fish_print_pipestatus " [" "]" "|" (set_color $fish_color_status) (set_color --bold $fish_color_status) $last_pipestatus)
 
     echo -n -s (set_color $color_cwd) (prompt_pwd) $normal (fish_vcs_prompt) $normal $prompt_status $suffix " "
@@ -66,11 +71,8 @@ function reload
         switch $argv[1]
             case all
                 _reload_shell
-                _reload_direnv
             case yubikey
                 _reload_yubikey
-            case direnv
-                _reload_direnv
             case '*'
                 _reload_shell
         end
@@ -80,13 +82,7 @@ end
 function _reload_shell
     source ~/.config/fish/config.fish
 
-    echo config reloaded
-end
-
-function _reload_direnv
-    direnv allow
-
-    echo direnv reloaded
+    echo "config reloaded"
 end
 
 function _reload_yubikey
@@ -99,3 +95,7 @@ end
 function jwt
     ruby -rjson -rbase64 -rzlib -rstringio -e "ARGV[0].split('.')[0,2].each_with_index { |f, i| begin; j = JSON.parse(Base64.urlsafe_decode64(f)); rescue JSON::ParserError; j = JSON.parse(Zlib::GzipReader.new(StringIO.new(Base64.urlsafe_decode64(f))).read); end; jj j; break if i.zero? && j.key?('enc')}" $argv[1]
 end
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :

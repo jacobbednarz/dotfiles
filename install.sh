@@ -39,17 +39,17 @@ if [ "${OS}" != "Darwin" ]; then
   exit 1
 fi
 
-print_info "checking if ~/src exists"
+print_info "checking if $HOME/src exists"
 if [ ! -d "${HOME}/src" ]; then
-  print_info "creating ~/src"
-  mkdir -p $HOME/src
+  print_info "creating $HOME/src"
+  mkdir -p "$HOME/src"
 else
-  print_success "~/src exists"
+  print_success "$HOME/src exists"
 fi
 
 if [ ! -d "$DOTFILES_PATH" ]; then
   print_info "cloning dotfiles"
-  git clone ${DOTFILES_REPO} ${DOTFILES_PATH}
+  git clone "${DOTFILES_REPO}" "${DOTFILES_PATH}"
 else
   print_info "dotfiles already cloned"
 fi
@@ -58,9 +58,11 @@ print_info "checking if homebrew is installed"
 if [ ! -d "/opt/homebrew" ]; then
   print_info "installing homebrew"
   curl -fsS 'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
+  # shellcheck disable=SC2046
   eval $(/opt/homebrew/bin/brew shellenv)
   print_success "homebrew is installed"
 else
+  # shellcheck disable=SC2046
   eval $(/opt/homebrew/bin/brew shellenv)
   print_info "homebrew already installed"
 fi
@@ -90,7 +92,7 @@ fi
 if [ -z "$CI" ]; then
   if [ "$SHELL" != "/opt/homebrew/bin/fish" ]; then
     print_info "updating default shell for $USER"
-    chsh -s $(which fish)
+    chsh -s "$(which fish)"
     print_success "default shell updated"
   else
     print_info "fish is already the default shell"
