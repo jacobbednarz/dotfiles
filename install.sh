@@ -3,16 +3,30 @@
 DOTFILES_REPO="https://github.com/jacobbednarz/dotfiles.git"
 DOTFILES_PATH="${HOME}/src/dotfiles"
 
-reset="$(tput sgr0)"
-highlight="$(tput smso)"
-dim="$(tput dim)"
-red="$(tput setaf 1)"
-blue="$(tput setaf 4)"
-green="$(tput setaf 2)"
-yellow="$(tput setaf 3)"
-bold=$(tput bold)
-normal=$(tput sgr0)
-underline="$(tput smul)"
+# don't use tput if we don't have a terminal...like in CI 😢
+if [ -t 1 ] && command -v tput >/dev/null 2>&1 && tput setaf 1 >/dev/null 2>&1; then
+  reset="$(tput sgr0)"
+  highlight="$(tput smso)"
+  dim="$(tput dim)"
+  red="$(tput setaf 1)"
+  blue="$(tput setaf 4)"
+  green="$(tput setaf 2)"
+  yellow="$(tput setaf 3)"
+  bold=$(tput bold)
+  normal=$(tput sgr0)
+  underline="$(tput smul)"
+else
+  reset=""
+  highlight=""
+  dim=""
+  red=""
+  blue=""
+  green=""
+  yellow=""
+  bold=""
+  normal=""
+  underline=""
+fi
 
 trap 'ret=$?; test $ret -ne 0 && printf "${red}setup failed${reset}n" >&2; exit $ret' EXIT
 set -e
