@@ -128,9 +128,13 @@ print_success "dotfiles installed"
 
 print_info "running brew bundle check"
 if [ -f "$HOME/.Brewfile" ]; then
-  brew bundle check --global >/dev/null 2>&1 || {
+  if brew bundle check --global >/dev/null 2>&1; then
+    print_success "all brew bundle dependencies satisfied"
+  else
+    print_info "installing brew bundle dependencies"
     brew bundle install --global --cleanup | indent
-  }
+    print_success "brew bundle installation complete"
+  fi
 else
   print_info "Brewfile not found, skipping"
 fi
