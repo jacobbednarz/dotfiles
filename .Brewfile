@@ -10,7 +10,7 @@ brew "aws-vault"
 brew "bashdb"
 brew "jacobbednarz/tap/cf-vault"
 brew "coreutils"
-brew "curl", link: true
+brew "curl", link: :overwrite
 brew "dive"
 brew "delve" # Go debugger
 # brew "rs/tap/dnstrace" # forumula missing in action
