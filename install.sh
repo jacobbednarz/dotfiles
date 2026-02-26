@@ -34,8 +34,8 @@ indent() {
 }
 
 OS=$(uname -s 2>/dev/null)
-if [ "${OS}" != "Darwin" ]; then
-  print_error "this installer only works on MacOS"
+if [ "${OS}" != "Darwin" ] && [ "${OS}" != "Linux" ]; then
+  print_error "this installer only works on MacOS and Linux"
   exit 1
 fi
 
@@ -55,15 +55,21 @@ else
 fi
 
 print_info "checking if homebrew is installed"
-if [ ! -d "/opt/homebrew" ]; then
+if ! command -v brew >/dev/null 2>&1; then
   print_info "installing homebrew"
-  curl -fsS 'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
-  # shellcheck disable=SC2046
-  eval $(/opt/homebrew/bin/brew shellenv)
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  if [ -x "/opt/homebrew/bin/brew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [ -x "/usr/local/bin/brew" ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  elif [ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
   print_success "homebrew is installed"
 else
   # shellcheck disable=SC2046
-  eval $(/opt/homebrew/bin/brew shellenv)
+  eval $(brew shellenv)
   print_info "homebrew already installed"
 fi
 
@@ -82,17 +88,18 @@ else
 fi
 
 print_info "checking fish is an available shell"
-if ! grep -q fish /etc/shells; then
-  command -v fish | sudo tee -a /etc/shells
+FISH_PATH="$(command -v fish)"
+if ! grep -q "^${FISH_PATH}$" /etc/shells; then
+  echo "$FISH_PATH" | sudo tee -a /etc/shells >/dev/null
   print_success "fish added to available shells"
 else
   print_info "fish is an available shell"
 fi
 
 if [ -z "$CI" ]; then
-  if [ "$SHELL" != "/opt/homebrew/bin/fish" ]; then
+  if [ "$SHELL" != "$FISH_PATH" ]; then
     print_info "updating default shell for $USER"
-    chsh -s "$(which fish)"
+    chsh -s "$FISH_PATH"
     print_success "default shell updated"
   else
     print_info "fish is already the default shell"
