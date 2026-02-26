@@ -6,13 +6,13 @@ tap "ycd/tap"
 
 brew "ast-grep"
 brew "awscli"
+brew "aws-vault"
 brew "bashdb"
 brew "jacobbednarz/tap/cf-vault"
 brew "coreutils"
 brew "curl", link: true
 brew "dive"
 brew "delve" # Go debugger
-brew "dotnet"
 # brew "rs/tap/dnstrace" # forumula missing in action
 brew "doggo" # modern dig
 brew "ycd/tap/dstp"
@@ -52,7 +52,7 @@ brew "pstree"
 brew "railway"
 brew "rdap"
 brew "re2"
-brew "reattach-to-user-namespace" # wrapper for accessing MacOS pasteboard
+brew "reattach-to-user-namespace" if OS.mac? # wrapper for accessing MacOS pasteboard
 brew "ripgrep"
 brew "sd" # actually usable `sed`
 brew "shellcheck"
@@ -79,7 +79,6 @@ cask "1password"
 cask "1password-cli"
 cask "appcleaner"
 cask "arc"
-cask "aws-vault-binary"
 cask "claude-code"
 cask "docker-desktop"
 cask "elgato-control-center"
