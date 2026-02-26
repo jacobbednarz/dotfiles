@@ -47,7 +47,7 @@ brew "mtr"
 brew "mysql", restart_service: :changed
 brew "neovim"
 brew "pinentry"
-brew "pinentry-mac"
+brew "pinentry-mac" if OS.mac?
 brew "pstree"
 brew "railway"
 brew "rdap"
