@@ -61,6 +61,14 @@ else
   print_success "$HOME/src exists"
 fi
 
+print_info "checking if git is installed"
+if ! command -v git >/dev/null 2>&1; then
+  print_error "git is not installed, please install it first"
+  exit 1
+else
+  print_success "git is installed"
+fi
+
 if [ ! -d "$DOTFILES_PATH" ]; then
   print_info "cloning dotfiles"
   git clone "${DOTFILES_REPO}" "${DOTFILES_PATH}"
@@ -70,6 +78,12 @@ fi
 
 print_info "checking if homebrew is installed"
 if ! command -v brew >/dev/null 2>&1; then
+  print_info "checking if curl is installed"
+  if ! command -v curl >/dev/null 2>&1; then
+    print_error "curl is not installed, please install it first"
+    exit 1
+  fi
+  
   print_info "installing homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
