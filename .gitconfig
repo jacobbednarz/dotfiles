@@ -31,7 +31,7 @@ eol  = "lf"
 autocrlf = "input"
 trustctime = false
 whitespace = "fix,-indent-with-non-tab,trailing-space,cr-at-eol"
-editor = "vim"
+editor = "nvim"
 commentChar = "|"
 pager  = "/opt/homebrew/share/git-core/contrib/diff-highlight/diff-highlight | less"
 commitGraph = true
@@ -111,6 +111,9 @@ version = 2
 
 [advice]
 detachedHead = false
+
+[rerere]
+enabled = true
 
 [includeIf "gitdir:~/src/"]
 path = ~/.gitconfig-personal

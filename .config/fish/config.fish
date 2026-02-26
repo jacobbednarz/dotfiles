@@ -1,6 +1,11 @@
 # turn off the damn greeting
 set fish_greeting
 
+alias vim nvim
+alias v nvim
+alias n nvim
+alias k kubectl
+
 # hub
 if command -v hub &>/dev/null
     eval (hub alias -s)
@@ -18,6 +23,10 @@ end
 
 # source homebrew
 eval (/opt/homebrew/bin/brew shellenv)
+set -gx HOMEBREW_NO_ENV_HINTS 1
+
+# try
+eval (try init | string collect)
 
 set -gx GPG_TTY (tty)
 set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
@@ -25,6 +34,8 @@ gpgconf --launch gpg-agent
 
 fish_add_path "/Users/jacob.bednarz/.dotnet/tools"
 fish_add_path "/Users/jacob.bednarz/.local/bin" # python and other tools that use XDG
+fish_add_path /opt/homebrew/opt/libpq/bin # puts psql (without all of postgresql) on $PATH
+fish_add_path /opt/homebrew/opt/curl/bin # ensure the keg version is on $PATH
 
 # smarter `cd`
 if command -v zoxide &>/dev/null
