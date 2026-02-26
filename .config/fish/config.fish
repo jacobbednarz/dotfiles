@@ -34,8 +34,6 @@ gpgconf --launch gpg-agent
 
 fish_add_path "/Users/jacob.bednarz/.dotnet/tools"
 fish_add_path "/Users/jacob.bednarz/.local/bin" # python and other tools that use XDG
-fish_add_path /opt/homebrew/opt/libpq/bin # puts psql (without all of postgresql) on $PATH
-fish_add_path /opt/homebrew/opt/curl/bin # ensure the keg version is on $PATH
 
 # smarter `cd`
 if command -v zoxide &>/dev/null
