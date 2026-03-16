@@ -40,11 +40,12 @@ commitGraph = true
 renames = "copies"
 
 [help]
-autocorrect = 1
+autocorrect = prompt
 
 [merge]
 ff = true
 tool = "Kaleidoscope"
+conflictstyle = zdiff3
 
 [mergetool]
 keepBackup = false
@@ -53,8 +54,13 @@ keepBackup = false
 md = "ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot"
 trustExitCode = true
 
+[pull]
+rebase = true
+
 [push]
-default = "current"
+default = simple
+autoSetupRemote = true
+followTags = true
 
 [github]
 user = "jacobbednarz"
@@ -75,7 +81,27 @@ showSignature = false
 tool = "Kaleidoscope"
 renames = "copies"
 noprefix = true
-colorMoved = "default"
+algorithm = histogram
+colorMoved = plain
+mnemonicPrefix = true
+renames = true
+
+[branch]
+sort = -committerdate
+
+[tag]
+sort = version:refname
+
+[init]
+defaultBranch = master
+
+[fetch]
+prune = true
+
+[rebase]
+autoSquash = true
+autoStash = true
+updateRefs = true
 
 # Use `hexdump` to diff binary files
 [diff "bin"]
@@ -114,6 +140,7 @@ detachedHead = false
 
 [rerere]
 enabled = true
+autoupdate = true
 
 [includeIf "gitdir:~/src/"]
 path = ~/.gitconfig-personal
