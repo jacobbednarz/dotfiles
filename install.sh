@@ -1,156 +1,55 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 DOTFILES_REPO="https://github.com/jacobbednarz/dotfiles.git"
-DOTFILES_PATH="${HOME}/src/dotfiles"
+DEFAULT_DOTFILES_PATH="${HOME}/src/dotfiles"
+SCRIPT_DIR="$(CDPATH='' cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
-# don't use tput if we don't have a terminal...like in CI 😢
-if [ -t 1 ] && command -v tput >/dev/null 2>&1 && tput setaf 1 >/dev/null 2>&1; then
-  reset="$(tput sgr0)"
-  highlight="$(tput smso)"
-  dim="$(tput dim)"
-  red="$(tput setaf 1)"
-  blue="$(tput setaf 4)"
-  green="$(tput setaf 2)"
-  yellow="$(tput setaf 3)"
-  bold=$(tput bold)
-  normal=$(tput sgr0)
-  underline="$(tput smul)"
+if [ -d "${SCRIPT_DIR}/.git" ]; then
+  DOTFILES_PATH="${DOTFILES_PATH:-${SCRIPT_DIR}}"
 else
-  reset=""
-  highlight=""
-  dim=""
-  red=""
-  blue=""
-  green=""
-  yellow=""
-  bold=""
-  normal=""
-  underline=""
+  DOTFILES_PATH="${DOTFILES_PATH:-${DEFAULT_DOTFILES_PATH}}"
 fi
 
-trap 'ret=$?; test $ret -ne 0 && printf "${red}setup failed${reset}n" >&2; exit $ret' EXIT
-set -e
-
-print_success() {
-  printf "${green}✔ success:${reset} %b\n" "$1"
+info() {
+  printf 'info: %s\n' "$1"
 }
 
-print_error() {
-  printf "${red}✖ error:${reset} %b\n" "$1"
+fail() {
+  printf 'error: %s\n' "$1" >&2
+  exit 1
 }
 
-print_info() {
-  printf "${blue}ⓘ info:${reset} %b\n" "$1"
-}
-
-indent() {
-  sed "s/^/  /"
-}
-
-OS=$(uname -s 2>/dev/null)
+OS="$(uname -s 2>/dev/null)"
 if [ "${OS}" != "Darwin" ] && [ "${OS}" != "Linux" ]; then
-  print_error "this installer only works on MacOS and Linux"
-  exit 1
+  fail "this installer only works on macOS and Linux"
 fi
 
-print_info "checking if $HOME/src exists"
-if [ ! -d "${HOME}/src" ]; then
-  print_info "creating $HOME/src"
-  mkdir -p "$HOME/src"
-else
-  print_success "$HOME/src exists"
-fi
+export PATH="${HOME}/.local/bin:/opt/homebrew/bin:/usr/local/bin:/home/linuxbrew/.linuxbrew/bin:${PATH}"
 
-print_info "checking if git is installed"
 if ! command -v git >/dev/null 2>&1; then
-  print_error "git is not installed, please install it first"
-  exit 1
-else
-  print_success "git is installed"
+  fail "git is not installed, please install it first"
 fi
 
-if [ ! -d "$DOTFILES_PATH" ]; then
-  print_info "cloning dotfiles"
+if ! command -v curl >/dev/null 2>&1; then
+  fail "curl is not installed, please install it first"
+fi
+
+if [ ! -d "${DOTFILES_PATH}" ]; then
+  info "cloning dotfiles"
+  mkdir -p "$(dirname -- "${DOTFILES_PATH}")"
   git clone "${DOTFILES_REPO}" "${DOTFILES_PATH}"
-else
-  print_info "dotfiles already cloned"
 fi
 
-print_info "checking if homebrew is installed"
-if ! command -v brew >/dev/null 2>&1; then
-  print_info "checking if curl is installed"
-  if ! command -v curl >/dev/null 2>&1; then
-    print_error "curl is not installed, please install it first"
-    exit 1
-  fi
-  
-  print_info "installing homebrew"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-  if [ -x "/opt/homebrew/bin/brew" ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  elif [ -x "/usr/local/bin/brew" ]; then
-    eval "$(/usr/local/bin/brew shellenv)"
-  elif [ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  fi
-  print_success "homebrew is installed"
-else
-  # shellcheck disable=SC2046
-  eval $(brew shellenv)
-  print_info "homebrew already installed"
+if ! command -v mise >/dev/null 2>&1; then
+  info "installing mise"
+  curl -fsSL https://mise.run | sh
+  export PATH="${HOME}/.local/bin:${PATH}"
 fi
 
-print_info "checking if stow is installed"
-if ! [ -x "$(command -v stow)" ]; then
-  brew install stow
-else
-  print_info "stow already installed"
-fi
+info "trusting mise config"
+mise trust --quiet --yes --cd "${DOTFILES_PATH}"
 
-print_info "checking if fish is installed"
-if ! [ -x "$(command -v fish)" ]; then
-  brew install fish
-else
-  print_info "fish already installed"
-fi
-
-print_info "checking fish is an available shell"
-FISH_PATH="$(command -v fish)"
-if ! grep -q "^${FISH_PATH}$" /etc/shells; then
-  echo "$FISH_PATH" | sudo tee -a /etc/shells >/dev/null
-  print_success "fish added to available shells"
-else
-  print_info "fish is an available shell"
-fi
-
-if [ -z "$CI" ]; then
-  if [ "$SHELL" != "$FISH_PATH" ]; then
-    print_info "updating default shell for $USER"
-    chsh -s "$FISH_PATH"
-    print_success "default shell updated"
-  else
-    print_info "fish is already the default shell"
-  fi
-else
-  print_info "skipping shell adjustment as we are running in CI"
-fi
-
-print_info "linking dotfiles"
-stow . --dir="$HOME/src/dotfiles" --target="$HOME"
-print_success "dotfiles installed"
-
-print_info "running brew bundle check"
-if [ -f "$HOME/.Brewfile" ]; then
-  if brew bundle check --global >/dev/null 2>&1; then
-    print_success "all brew bundle dependencies satisfied"
-  else
-    print_info "installing brew bundle dependencies"
-    brew bundle install --global --cleanup | indent
-    print_success "brew bundle installation complete"
-  fi
-else
-  print_info "Brewfile not found, skipping"
-fi
-
-print_success "installer complete"
+info "running mise bootstrap"
+mise bootstrap --yes --cd "${DOTFILES_PATH}" "$@"

@@ -40,11 +40,20 @@ commitGraph = true
 renames = "copies"
 
 [help]
-autocorrect = 1
+autocorrect = prompt
 
 [merge]
 ff = true
 tool = "Kaleidoscope"
+conflictstyle = zdiff3
+
+[merge "mergiraf"]
+name = mergiraf
+driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
+
+[merge "weave"]
+name = Entity-level semantic merge
+driver = /opt/homebrew/bin/weave-driver %O %A %B %L %P
 
 [mergetool]
 keepBackup = false
@@ -53,8 +62,14 @@ keepBackup = false
 md = "ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot"
 trustExitCode = true
 
+[pull]
+rebase = true
+
 [push]
-default = "current"
+default = simple
+autoSetupRemote = true
+followTags = true
+forceWithLease = true
 
 [github]
 user = "jacobbednarz"
@@ -75,7 +90,27 @@ showSignature = false
 tool = "Kaleidoscope"
 renames = "copies"
 noprefix = true
-colorMoved = "default"
+algorithm = histogram
+colorMoved = plain
+mnemonicPrefix = true
+renames = true
+
+[branch]
+sort = -committerdate
+
+[tag]
+sort = version:refname
+
+[init]
+defaultBranch = master
+
+[fetch]
+prune = true
+
+[rebase]
+autoSquash = true
+autoStash = true
+updateRefs = true
 
 # Use `hexdump` to diff binary files
 [diff "bin"]
@@ -114,6 +149,32 @@ detachedHead = false
 
 [rerere]
 enabled = true
+autoupdate = true
 
-[includeIf "gitdir:~/src/"]
-path = ~/.gitconfig-personal
+# [includeIf "gitdir:~/"]
+# path = ~/.gitconfig-personal
+
+[user]
+name = "Jacob Bednarz"
+email = "jacob.bednarz@gmail.com"
+signingkey = "9846E532AF49C75E"
+
+[commit]
+gpgsign = true
+
+[tag]
+gpgSign = true
+
+[alias]
+commit = "commit -S"
+
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
