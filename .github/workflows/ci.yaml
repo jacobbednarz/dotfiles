@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Run installer
-      run: ./install.sh --dry-run --skip packages,mise-shell-activate,user,tools
+      run: ./install.sh --dry-run --force-dotfiles --skip packages,mise-shell-activate,user,tools
