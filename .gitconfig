@@ -47,6 +47,14 @@ ff = true
 tool = "Kaleidoscope"
 conflictstyle = zdiff3
 
+[merge "mergiraf"]
+name = mergiraf
+driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
+
+[merge "weave"]
+name = Entity-level semantic merge
+driver = /opt/homebrew/bin/weave-driver %O %A %B %L %P
+
 [mergetool]
 keepBackup = false
 
@@ -61,6 +69,7 @@ rebase = true
 default = simple
 autoSetupRemote = true
 followTags = true
+forceWithLease = true
 
 [github]
 user = "jacobbednarz"
@@ -142,5 +151,30 @@ detachedHead = false
 enabled = true
 autoupdate = true
 
-[includeIf "gitdir:~/src/"]
-path = ~/.gitconfig-personal
+# [includeIf "gitdir:~/"]
+# path = ~/.gitconfig-personal
+
+[user]
+name = "Jacob Bednarz"
+email = "jacob.bednarz@gmail.com"
+signingkey = "9846E532AF49C75E"
+
+[commit]
+gpgsign = true
+
+[tag]
+gpgSign = true
+
+[alias]
+commit = "commit -S"
+
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/

@@ -1,0 +1,160 @@
+[settings]
+experimental = true
+dotfiles.root = "~/src/dotfiles"
+
+[tools]
+python = "3.14"
+
+[bootstrap.brew.taps]
+"tobi/try" = "https://github.com/tobi/try"
+
+[bootstrap.hooks.pre-user]
+run = '''
+fish_path="/opt/homebrew/bin/fish"
+
+if [ -x "$fish_path" ] && ! grep -qx "$fish_path" /etc/shells; then
+  echo "$fish_path" | sudo tee -a /etc/shells >/dev/null
+fi
+'''
+
+[bootstrap.repos]
+"~/.tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
+
+[bootstrap.packages]
+"brew:ast-grep" = "latest"
+"brew:awscli" = "latest"
+"brew:aws-vault" = "latest"
+"brew:bashdb" = "latest"
+"brew:bash-language-server" = "latest"
+"brew:jacobbednarz/tap/cf-vault" = "latest"
+"brew:coreutils" = "latest"
+"brew:curl" = "latest"
+"brew:dive" = "latest"
+"brew:delve" = "latest"
+"brew:jacobbednarz/tap/dnstrace" = "latest"
+"brew:docker-credential-helper-ecr" = "latest"
+"brew:doggo" = "latest"
+"brew:dstp" = "latest"
+"brew:dust" = "latest"
+"brew:fd" = "latest"
+"brew:fish" = "latest"
+"brew:fzf" = "latest"
+"brew:gh" = "latest"
+"brew:git" = "latest"
+"brew:git-filter-repo" = "latest"
+"brew:git-lfs" = "latest"
+"brew:glances" = "latest"
+"brew:glow" = "latest"
+"brew:gnupg" = "latest"
+"brew:golangci-lint" = "latest"
+"brew:goreleaser" = "latest"
+"brew:graphviz" = "latest"
+"brew:grepcidr" = "latest"
+"brew:grex" = "latest"
+"brew:grpcurl" = "latest"
+"brew:helm" = "latest"
+"brew:hivemind" = "latest"
+"brew:htop" = "latest"
+"brew:int128/kubelogin/kubelogin" = "latest"
+"brew:jacobbednarz/tap/orb" = "latest"
+"brew:jacobbednarz/tap/starship" = "latest"
+"brew:jo" = "latest"
+"brew:jq" = "latest"
+"brew:k9s" = "latest"
+"brew:kubectx" = "latest"
+"brew:kubernetes-cli" = "latest"
+"brew:kubie" = "latest"
+"brew:lazygit" = "latest"
+"brew:luarocks" = "latest"
+"brew:mergiraf" = "latest"
+"brew:mike-engel/jwt-cli/jwt-cli" = "latest"
+"brew:mtr" = "latest"
+"brew:mysql@8.4" = "latest"
+"brew:nats-io/nats-tools/nats" = "latest"
+"brew:neovim" = "latest"
+"brew:oasdiff" = "latest"
+"brew:opencode" = "latest"
+"brew:pinentry" = "latest"
+"brew:pinentry-mac" = "latest"
+"brew:planetscale/tap/pscale" = "latest"
+"brew:proto" = "latest"
+"brew:pstree" = "latest"
+"brew:pulumi" = "latest"
+"brew:railway" = "latest"
+"brew:rdap" = "latest"
+"brew:re2" = "latest"
+"brew:reattach-to-user-namespace" = "latest"
+"brew:ripgrep" = "latest"
+"brew:ruff" = "latest"
+"brew:sd" = "latest"
+"brew:shellcheck" = "latest"
+"brew:sipcalc" = "latest"
+"brew:socat" = "latest"
+"brew:solargraph" = "latest"
+"brew:sqlite" = "latest"
+"brew:stern" = "latest"
+"brew:tmux" = "latest"
+"brew:tmuxinator" = "latest"
+"brew:tobi/try/try" = "latest"
+"brew:tree" = "latest"
+"brew:uv" = "latest"
+"brew:watch" = "latest"
+"brew:weave" = "latest"
+"brew:websocat" = "latest"
+"brew:wget" = "latest"
+"brew:whois" = "latest"
+"brew:wrk" = "latest"
+"brew:ycd/tap/dstp" = "latest"
+"brew:ykman" = "latest"
+"brew:ymtdzzz/tap/otel-tui" = "latest"
+"brew:yq" = "latest"
+"brew:yubikey-agent" = "latest"
+"brew:zoxide" = "latest"
+# Unsupported casks are installed by tasks.bootstrap via Homebrew.
+"brew-cask:1password" = "latest"
+"brew-cask:1password-cli" = "latest"
+"brew-cask:appcleaner" = "latest"
+"brew-cask:bettertouchtool" = "latest"
+"brew-cask:claude-code" = "latest"
+"brew-cask:codex" = "latest"
+"brew-cask:discord" = "latest"
+"brew-cask:elgato-control-center" = "latest"
+"brew-cask:google-chrome" = "latest"
+"brew-cask:istat-menus" = "latest"
+"brew-cask:kaleidoscope" = "latest"
+"brew-cask:loop" = "latest"
+"brew-cask:lunar" = "latest"
+"brew-cask:mitmproxy" = "latest"
+"brew-cask:monodraw" = "latest"
+"brew-cask:obsidian" = "latest"
+"brew-cask:raycast" = "latest"
+"brew-cask:rocket" = "latest"
+"brew-cask:shortcat" = "latest"
+"brew-cask:shottr" = "latest"
+"brew-cask:slack" = "latest"
+"brew-cask:spotify" = "latest"
+"brew-cask:tower" = "latest"
+"brew-cask:utm" = "latest"
+"brew-cask:vanilla" = "latest"
+"brew-cask:yubico-authenticator" = "latest"
+"brew-cask:zed" = "latest"
+
+[tasks.bootstrap]
+run = "./scripts/bootstrap-unsupported-casks.sh"
+
+[bootstrap.user]
+login_shell = "/opt/homebrew/bin/fish"
+
+[dotfiles]
+"~/.config/fish/config.fish" = { mode = "symlink" }
+"~/.config/ghostty" = { mode = "symlink-each" }
+"~/.config/mise/config.toml" = { mode = "symlink" }
+"~/.config/nvim" = { mode = "symlink-each" }
+"~/.config/zed/settings.json" = { mode = "symlink" }
+"~/.gitconfig" = { mode = "symlink" }
+"~/.gitconfig-personal" = { mode = "symlink" }
+"~/.gnupg/gpg-agent.conf" = { mode = "symlink" }
+"~/.gnupg/gpg.conf" = { mode = "symlink" }
+"~/.grit/grit.yaml" = { mode = "symlink" }
+"~/.ssh/config" = { mode = "symlink" }
+"~/.tmux.conf" = { mode = "symlink" }
