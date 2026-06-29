@@ -11,10 +11,8 @@ on:
 
 jobs:
   installer:
-    runs-on: macos-latest 
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Cleanup existing files
-      run: rm -rf ~/.gitconfig
     - name: Run installer
-      run: ./install.sh
+      run: ./install.sh --dry-run --skip packages,mise-shell-activate,user,tools

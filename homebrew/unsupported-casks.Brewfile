@@ -1,0 +1,8 @@
+cask "docker-desktop"
+cask "gcloud-cli"
+cask "ghostty"
+cask "gpg-suite"
+cask "orbstack"
+cask "proxyman"
+cask "vagrant"
+cask "wireshark-app"
