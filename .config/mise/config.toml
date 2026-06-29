@@ -1,6 +1,5 @@
 [settings]
 experimental = true
-dotfiles.root = "~/src/dotfiles"
 
 [tools]
 python = "3.14"
@@ -146,15 +145,15 @@ run = "./scripts/bootstrap-unsupported-casks.sh"
 login_shell = "/opt/homebrew/bin/fish"
 
 [dotfiles]
-"~/.config/fish/config.fish" = { mode = "symlink" }
-"~/.config/ghostty" = { mode = "symlink-each" }
-"~/.config/mise/config.toml" = { mode = "symlink" }
-"~/.config/nvim" = { mode = "symlink-each" }
-"~/.config/zed/settings.json" = { mode = "symlink" }
-"~/.gitconfig" = { mode = "symlink" }
-"~/.gitconfig-personal" = { mode = "symlink" }
-"~/.gnupg/gpg-agent.conf" = { mode = "symlink" }
-"~/.gnupg/gpg.conf" = { mode = "symlink" }
-"~/.grit/grit.yaml" = { mode = "symlink" }
-"~/.ssh/config" = { mode = "symlink" }
-"~/.tmux.conf" = { mode = "symlink" }
+"~/.config/fish/config.fish" = { source = "../../.config/fish/config.fish", mode = "symlink" }
+"~/.config/ghostty" = { source = "../../.config/ghostty", mode = "symlink-each" }
+"~/.config/mise/config.toml" = { source = "../../.config/mise/config.toml", mode = "symlink" }
+"~/.config/nvim" = { source = "../../.config/nvim", mode = "symlink-each" }
+"~/.config/zed/settings.json" = { source = "../../.config/zed/settings.json", mode = "symlink" }
+"~/.gitconfig" = { source = "../../.gitconfig", mode = "symlink" }
+"~/.gitconfig-personal" = { source = "../../.gitconfig-personal", mode = "symlink" }
+"~/.gnupg/gpg-agent.conf" = { source = "../../.gnupg/gpg-agent.conf", mode = "symlink" }
+"~/.gnupg/gpg.conf" = { source = "../../.gnupg/gpg.conf", mode = "symlink" }
+"~/.grit/grit.yaml" = { source = "../../.grit/grit.yaml", mode = "symlink" }
+"~/.ssh/config" = { source = "../../.ssh/config", mode = "symlink" }
+"~/.tmux.conf" = { source = "../../.tmux.conf", mode = "symlink" }
