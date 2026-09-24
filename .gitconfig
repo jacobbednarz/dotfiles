@@ -155,8 +155,8 @@ autoupdate = true
 # path = ~/.gitconfig-personal
 
 [user]
-name = "Jacob Bednarz"
-email = "jacob.bednarz@gmail.com"
+	name = Jacob Bednarz
+	email = jacob.bednarz@gmail.com
 signingkey = "9846E532AF49C75E"
 
 [commit]

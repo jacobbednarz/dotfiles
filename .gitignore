@@ -40,3 +40,11 @@ swap-window
 .config/wireshark/recent
 .config/wireshark/recent_common
 .config/superpowers
+.config/opencode/package-lock.json
+.config/planetscale/state.yml
+.config/planetscale/pscale.yml
+.config/stainless/auth.json
+.config/op/config
+.config/nats
+.config/mintlify/anonymous-id
+.config/github-copilot/versions.json
