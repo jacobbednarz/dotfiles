@@ -1,0 +1,39 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+format = "$directory$git_branch$aws$gcloud$kubernetes$character"
+
+[line_break]
+disabled = true
+
+[aws]
+disabled = true
+format = " [($symbol $profile \\($region\\))]($style)"
+style = "yellow"
+symbol = ""
+
+# needs https://github.com/starship/starship/pull/7367
+profiles = [
+    { profile_pattern = ".*(?P<env>(admin|root|prod)).*", profile_alias = "$env", style = "red" },
+    { profile_pattern = ".*(?P<env>(staging)).*", profile_alias = "$env", style = "yellow" }
+]
+[directory]
+style = "green"
+format = "[$path]($style)"
+truncation_length = 1
+truncate_to_repo = false
+fish_style_pwd_dir_length = 1
+
+[character]
+success_symbol = "[\\$](bright-white)"
+error_symbol = "[\\$](red)"
+vimcmd_symbol = "[\\$](green)"
+
+[git_branch]
+format = " \\($branch\\)($style)"
+style = "bright-black"
+
+[kubernetes]
+disabled = true
+# detect_env_vars = ["AWS_VAULT"] # k8s is only accessed via AWS so check that is present
+format = " [$symbol $context (\\($namespace\\))]($style)"
+symbol = "☸"
