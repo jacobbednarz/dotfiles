@@ -132,6 +132,9 @@ run = "./scripts/bootstrap-unsupported-casks.sh"
 login_shell = "/opt/homebrew/bin/fish"
 
 [dotfiles]
+# ensure the root mise configuration is managed with mise
+"~/.config/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
+
 # all the platforms should read the same agents file
 "~/.claude/CLAUDE.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
 "~/.codex/AGENTS.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
