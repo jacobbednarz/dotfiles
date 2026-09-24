@@ -157,6 +157,9 @@ rust = "latest"
 [bootstrap.user]
 login_shell = "/opt/homebrew/bin/fish"
 
+[bootstrap.macos.dock]
+autohide = true
+
 [dotfiles]
 # ensure the root mise configuration is managed with mise
 "~/.config/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
@@ -168,10 +171,11 @@ login_shell = "/opt/homebrew/bin/fish"
 "~/.config/opencode/AGENTS.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
 "~/.gemini/GEMINI.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
 "~/.omp/agent/AGENTS.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
+
 "~/.config/fish/config.fish" = { source = ".config/fish/config.fish", mode = "symlink" }
-"~/.config/ghostty" = { source = ".config/ghostty", mode = "symlink-each" }
-"~/.config/mise/config.toml" = { source = ".config/mise/config.toml", mode = "symlink" }
-"~/.config/nvim" = { source = ".config/nvim", mode = "symlink-each" }
+"~/.config/fish/functions" = { source = ".config/fish/functions", mode = "symlink" }
+"~/.config/ghostty" = { source = ".config/ghostty", mode = "symlink" }
+"~/.config/nvim" = { source = ".config/nvim", mode = "symlink" }
 "~/.config/zed/settings.json" = { source = ".config/zed/settings.json", mode = "symlink" }
 "~/.gitconfig" = { source = ".gitconfig", mode = "symlink" }
 "~/.gitconfig-personal" = { source = ".gitconfig-personal", mode = "symlink" }
@@ -180,3 +184,4 @@ login_shell = "/opt/homebrew/bin/fish"
 "~/.grit/grit.yaml" = { source = ".grit/grit.yaml", mode = "symlink" }
 "~/.ssh/config" = { source = ".ssh/config", mode = "symlink" }
 "~/.tmux.conf" = { source = ".tmux.conf", mode = "symlink" }
+"~/.kubie/kubie.conf" = { source = ".kube/kubie.yaml", mode = "symlink" }

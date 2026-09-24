@@ -4,6 +4,7 @@ set -euo pipefail
 
 DOTFILES_REPO="https://github.com/jacobbednarz/dotfiles.git"
 DEFAULT_DOTFILES_PATH="${HOME}/src/dotfiles"
+MISE_BIN="${HOME}/.local/bin/mise"
 SCRIPT_DIR="$(CDPATH='' cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ -d "${SCRIPT_DIR}/.git" ]; then
@@ -42,14 +43,13 @@ if [ ! -d "${DOTFILES_PATH}" ]; then
   git clone "${DOTFILES_REPO}" "${DOTFILES_PATH}"
 fi
 
-if ! command -v mise >/dev/null 2>&1; then
+if [ ! -x "${MISE_BIN}" ]; then
   info "installing mise"
-  curl -fsSL https://mise.run | sh
-  export PATH="${HOME}/.local/bin:${PATH}"
+  curl -fsSL https://mise.run | MISE_INSTALL_PATH="${MISE_BIN}" sh
 fi
 
 info "trusting mise config"
-mise trust --quiet --yes --cd "${DOTFILES_PATH}"
+"${MISE_BIN}" trust --quiet --yes --cd "${DOTFILES_PATH}"
 
 info "running mise bootstrap"
-mise bootstrap --yes --cd "${DOTFILES_PATH}" "$@"
+"${MISE_BIN}" bootstrap --yes --cd "${DOTFILES_PATH}" "$@"
