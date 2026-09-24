@@ -4,15 +4,6 @@ experimental = true
 [bootstrap.brew.taps]
 "tobi/try" = "https://github.com/tobi/try"
 
-[bootstrap.hooks.pre-user]
-run = '''
-fish_path="/opt/homebrew/bin/fish"
-
-if [ -x "$fish_path" ] && ! grep -qx "$fish_path" /etc/shells; then
-  echo "$fish_path" | sudo tee -a /etc/shells >/dev/null
-fi
-'''
-
 [bootstrap.repos]
 "~/.tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
 
