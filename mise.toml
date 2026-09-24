@@ -3,6 +3,18 @@ experimental = true
 
 [settings.dotfiles]
 root = "~/src/dotfiles"
+
+[tools]
+aws-vault = "7.14.0"
+awscli = { version = "2.36.40", symlink_bins = "true" }
+go = "latest"
+lua = "latest"
+node = "latest"
+python = "3.14"
+ruby = "4.0.6"
+rust = "latest"
+"vfox:gcloud" = "580.0.0"
+
 [bootstrap.brew.taps]
 "tobi/try" = "https://github.com/tobi/try"
 
