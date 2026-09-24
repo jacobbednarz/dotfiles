@@ -7,6 +7,8 @@ swap-window
 
 .config/fish/*
 !.config/fish/config.fish
+!.config/fish/functions/
+!.config/fish/functions/*.fish
 
 .gnupg/*
 !.gnupg/gpg.conf
@@ -17,3 +19,32 @@ swap-window
 !.ssh/config.d/*
 
 .aws/*
+.config/gcloud/logs
+.config/gcloud/.last_opt_in_prompt.yaml
+.config/gcloud/.last_survey_prompt.yaml
+.config/gcloud/.last_update_check.json
+.config/gcloud/access_tokens.db
+.config/gcloud/active_config
+.config/gcloud/config_sentinel
+.config/gcloud/credentials.db
+.config/gcloud/default_configs.db
+.config/gcloud/gce
+.config/gcloud/hidden_gcloud_config_universe_descriptor_data_cache_configs.db
+.config/gcloud/legacy_credentials
+.config/configstore/update-notifier-@pandacss
+.config/github-copilot/auth.db
+.config/github-copilot/auth.db-shm
+.config/github-copilot/auth.db-wal
+.config/hunk/state.json
+.config/zed/prompts
+.config/wireshark/recent
+.config/wireshark/recent_common
+.config/superpowers
+.config/opencode/package-lock.json
+.config/planetscale/state.yml
+.config/planetscale/pscale.yml
+.config/stainless/auth.json
+.config/op/config
+.config/nats
+.config/mintlify/anonymous-id
+.config/github-copilot/versions.json

@@ -1,0 +1,187 @@
+[settings]
+experimental = true
+
+[settings.dotfiles]
+root = "~/src/dotfiles"
+
+[tools]
+aws-vault = "7.14.0"
+awscli = { version = "2.36.40", symlink_bins = "true" }
+go = "latest"
+lua = "latest"
+node = "latest"
+python = "3.14"
+ruby = "4.0.6"
+rust = "latest"
+"vfox:gcloud" = "580.0.0"
+
+[bootstrap.brew.taps]
+"tobi/try" = "https://github.com/tobi/try"
+
+[bootstrap.repos]
+"~/.tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
+
+[bootstrap.packages]
+"brew-cask:1password" = "latest"
+"brew-cask:1password-cli" = "latest"
+"brew-cask:abue-ammar/tinycast/tinycast" = "latest"
+"brew-cask:appcleaner" = "latest"
+"brew-cask:bettertouchtool" = "latest"
+"brew-cask:claude-code" = "latest"
+"brew-cask:cleanshot" = "latest"
+"brew-cask:cmux" = "latest"
+"brew-cask:codex" = "latest"
+"brew-cask:ctrlspice/otel-desktop-viewer/otel-desktop-viewer" = "latest"
+"brew-cask:discord" = "latest"
+"brew-cask:docker-desktop" = "latest"
+"brew-cask:elgato-control-center" = "latest"
+"brew-cask:fork" = "latest"
+"brew-cask:ghostty" = "latest"
+"brew-cask:google-chrome" = "latest"
+"brew-cask:gpg-suite" = "latest"
+"brew-cask:helium-browser" = "latest"
+"brew-cask:istat-menus" = "latest"
+"brew-cask:kaleidoscope" = "latest"
+"brew-cask:linearmouse" = "latest"
+"brew-cask:loop" = "latest"
+"brew-cask:lunar" = "latest"
+"brew-cask:mitmproxy" = "latest"
+"brew-cask:monodraw" = "latest"
+"brew-cask:obsidian" = "latest"
+"brew-cask:openlogi" = "latest"
+"brew-cask:orbstack" = "latest"
+"brew-cask:proxyman" = "latest"
+"brew-cask:rocket" = "latest"
+"brew-cask:shortcat" = "latest"
+"brew-cask:shottr" = "latest"
+"brew-cask:slack" = "latest"
+"brew-cask:spotify" = "latest"
+"brew-cask:tableplus" = "latest"
+"brew-cask:tcp-viewer" = "latest"
+"brew-cask:tower" = "latest"
+"brew-cask:utm" = "latest"
+"brew-cask:vagrant" = "latest"
+"brew-cask:vanilla" = "latest"
+"brew-cask:wireshark-app" = "latest"
+"brew-cask:yubico-authenticator" = "latest"
+"brew-cask:zed" = "latest"
+"brew:autoconf" = "latest"
+"brew:ast-grep" = "latest"
+"brew:bashdb" = "latest"
+"brew:coreutils" = "latest"
+"brew:curl" = "latest"
+"brew:delve" = "latest"
+"brew:dive" = "latest"
+"brew:docker-credential-helper-ecr" = "latest"
+"brew:doggo" = "latest"
+"brew:dust" = "latest"
+"brew:fd" = "latest"
+"brew:fish" = "latest"
+"brew:fzf" = "latest"
+"brew:gh" = "latest"
+"brew:git" = "latest"
+"brew:git-filter-repo" = "latest"
+"brew:git-lfs" = "latest"
+"brew:git-spice" = "latest"
+"brew:glances" = "latest"
+"brew:glow" = "latest"
+"brew:gnupg" = "latest"
+"brew:golangci-lint" = "latest"
+"brew:goreleaser" = "latest"
+"brew:graphviz" = "latest"
+"brew:grepcidr" = "latest"
+"brew:grex" = "latest"
+"brew:grpcurl" = "latest"
+"brew:helm" = "latest"
+"brew:herdr" = "latest"
+"brew:hivemind" = "latest"
+"brew:htop" = "latest"
+"brew:int128/kubelogin/kubelogin" = "latest"
+"brew:jacobbednarz/tap/cf-vault" = "latest"
+"brew:jacobbednarz/tap/dnstrace" = "latest"
+"brew:jacobbednarz/tap/orb" = "latest"
+"brew:jacobbednarz/tap/starship" = "latest"
+"brew:jo" = "latest"
+"brew:jq" = "latest"
+"brew:k9s" = "latest"
+"brew:kubectx" = "latest"
+"brew:kubernetes-cli" = "latest"
+"brew:kubie" = "latest"
+"brew:lazygit" = "latest"
+"brew:luarocks" = "latest"
+"brew:mergiraf" = "latest"
+"brew:mike-engel/jwt-cli/jwt-cli" = "latest"
+"brew:mtr" = "latest"
+"brew:mysql@8.4" = "latest"
+"brew:nats-io/nats-tools/nats" = "latest"
+"brew:neovim" = "latest"
+"brew:oasdiff" = "latest"
+"brew:opencode" = "latest"
+"brew:pinentry" = "latest"
+"brew:pinentry-mac" = "latest"
+"brew:planetscale/tap/pscale" = "latest"
+"brew:proto" = "latest"
+"brew:pstree" = "latest"
+"brew:pulumi" = "latest"
+"brew:railway" = "latest"
+"brew:rdap" = "latest"
+"brew:re2" = "latest"
+"brew:reattach-to-user-namespace" = "latest"
+"brew:ripgrep" = "latest"
+"brew:ruff" = "latest"
+"brew:sd" = "latest"
+"brew:shellcheck" = "latest"
+"brew:sipcalc" = "latest"
+"brew:socat" = "latest"
+"brew:solargraph" = "latest"
+"brew:sqlite" = "latest"
+"brew:stern" = "latest"
+"brew:tmux" = "latest"
+"brew:tmuxinator" = "latest"
+"brew:tobi/try/try" = "latest"
+"brew:tree" = "latest"
+"brew:uv" = "latest"
+"brew:watch" = "latest"
+"brew:weave" = "latest"
+"brew:websocat" = "latest"
+"brew:wget" = "latest"
+"brew:whois" = "latest"
+"brew:wrk" = "latest"
+"brew:ycd/tap/dstp" = "latest"
+"brew:ykman" = "latest"
+"brew:ymtdzzz/tap/otel-tui" = "latest"
+"brew:yq" = "latest"
+"brew:yubikey-agent" = "latest"
+"brew:zoxide" = "latest"
+
+[bootstrap.user]
+login_shell = "/opt/homebrew/bin/fish"
+
+[bootstrap.macos.dock]
+autohide = true
+
+[dotfiles]
+# ensure the root mise configuration is managed with mise
+"~/.config/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
+
+# all the platforms should read the same agents file
+"~/.claude/CLAUDE.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
+"~/.codex/AGENTS.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
+"~/.config/agents/AGENTS.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
+"~/.config/opencode/AGENTS.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
+"~/.gemini/GEMINI.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
+"~/.omp/agent/AGENTS.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
+
+"~/.config/fish/config.fish" = { source = ".config/fish/config.fish", mode = "symlink" }
+"~/.config/fish/functions" = { source = ".config/fish/functions", mode = "symlink" }
+"~/.config/ghostty" = { source = ".config/ghostty", mode = "symlink" }
+"~/.config/nvim" = { source = ".config/nvim", mode = "symlink" }
+"~/.config/zed/settings.json" = { source = ".config/zed/settings.json", mode = "symlink" }
+"~/.gitconfig" = { source = ".gitconfig", mode = "symlink" }
+"~/.gitconfig-personal" = { source = ".gitconfig-personal", mode = "symlink" }
+"~/.gnupg/gpg-agent.conf" = { source = ".gnupg/gpg-agent.conf", mode = "symlink" }
+"~/.gnupg/gpg.conf" = { source = ".gnupg/gpg.conf", mode = "symlink" }
+"~/.grit/grit.yaml" = { source = ".grit/grit.yaml", mode = "symlink" }
+"~/.ssh/config" = { source = ".ssh/config", mode = "symlink" }
+"~/.tmux.conf" = { source = ".tmux.conf", mode = "symlink" }
+"~/.kubie/kubie.conf" = { source = ".kube/kubie.yaml", mode = "symlink" }
