@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Keeps gpg-agent running so ssh can always reach it through SSH_AUTH_SOCK,
+  without every shell or ssh connection paying to start it.
+
+  gpg-agent always forks, even when told not to detach, so launchd can't
+  supervise the agent process itself. Instead it watches the ssh socket, which
+  the agent removes whenever it shuts down cleanly (gpgconf's kill command,
+  SIGTERM, logout), and relaunches it while the socket is missing. A SIGKILL leaves the socket
+  behind, so that case waits for the next gpg command to restart the agent.
+  launchd doesn't expand `~`, hence the absolute path.
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>local.gpg-agent</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/gpgconf</string>
+    <string>--launch</string>
+    <string>gpg-agent</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <dict>
+    <key>PathState</key>
+    <dict>
+      <key>/Users/jacob/.gnupg/S.gpg-agent.ssh</key>
+      <false/>
+    </dict>
+  </dict>
+  <!--
+    gpgconf exits once the agent has daemonised, and launchd otherwise kills
+    whatever is left in the job's process group when that happens.
+  -->
+  <key>AbandonProcessGroup</key>
+  <true/>
+</dict>
+</plist>

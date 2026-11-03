@@ -185,3 +185,6 @@ autohide = true
 "~/.ssh/config" = { source = ".ssh/config", mode = "symlink" }
 "~/.tmux.conf" = { source = ".tmux.conf", mode = "symlink" }
 "~/.kubie/kubie.conf" = { source = ".kube/kubie.yaml", mode = "symlink" }
+
+# launchd only reliably loads real files from LaunchAgents at login
+"~/Library/LaunchAgents/local.gpg-agent.plist" = { source = "Library/LaunchAgents/local.gpg-agent.plist", mode = "copy" }

@@ -32,10 +32,14 @@ if command -v mise &>/dev/null
     end
 end
 
-set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
-# `gpgconf --launch` costs ~300ms even when the agent is already running;
-# connecting autostarts it just the same for a fraction of the cost.
-gpg-connect-agent --quiet /bye >/dev/null
+# Every gpg process costs ~6ms of dynamic linking before doing any work, so
+# only ask gpgconf where the socket is when it isn't in the homedir (e.g. a
+# Linux `/run/user` socket dir). A LaunchAgent keeps the agent running.
+if test -S ~/.gnupg/S.gpg-agent.ssh
+    set -gx SSH_AUTH_SOCK ~/.gnupg/S.gpg-agent.ssh
+else
+    set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+end
 
 fish_add_path /Users/jacob/go/bin
 
