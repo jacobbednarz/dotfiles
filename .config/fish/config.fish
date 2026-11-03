@@ -37,7 +37,9 @@ end
 
 set -gx GPG_TTY (tty)
 set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
+# `gpgconf --launch` costs ~300ms even when the agent is already running;
+# connecting autostarts it just the same for a fraction of the cost.
+gpg-connect-agent --quiet /bye >/dev/null
 
 fish_add_path /Users/jacob/go/bin
 
@@ -73,4 +75,5 @@ end
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init2.fish 2>/dev/null || :
 
-starship init fish | source
+# skip the stub `init` emits, which round-trips the full init through `psub`
+starship init fish --print-full-init | source
