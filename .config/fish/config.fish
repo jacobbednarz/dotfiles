@@ -48,11 +48,6 @@ if test -x "$HOMEBREW_PREFIX/opt/mysql@8.4/bin/mysql"
     fish_add_path "$HOMEBREW_PREFIX/opt/mysql@8.4/bin"
 end
 
-# add grit tooling to the $PATH
-if command -v grit &>/dev/null
-    fish_add_path "$HOME/.grit/bin"
-end
-
 # proto
 if command -v proto &>/dev/null
     set -gx PROTO_HOME "$HOME/.proto"
@@ -65,10 +60,6 @@ end
 if command -v gcloud &>/dev/null
     fish_add_path "$HOMEBREW_PREFIX/share/google-cloud-sdk/bin"
 end
-
-# Added by OrbStack: command-line tools and integration
-# This won't be added again if you remove it.
-source ~/.orbstack/shell/init2.fish 2>/dev/null || :
 
 # Everything below only matters with a prompt and keybindings, and costs
 # non-interactive shells time for nothing.
