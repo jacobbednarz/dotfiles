@@ -181,7 +181,6 @@ autohide = true
 "~/.gitconfig-personal" = { source = ".gitconfig-personal", mode = "symlink" }
 "~/.gnupg/gpg-agent.conf" = { source = ".gnupg/gpg-agent.conf", mode = "symlink" }
 "~/.gnupg/gpg.conf" = { source = ".gnupg/gpg.conf", mode = "symlink" }
-"~/.grit/grit.yaml" = { source = ".grit/grit.yaml", mode = "symlink" }
 "~/.ssh/config" = { source = ".ssh/config", mode = "symlink" }
 "~/.tmux.conf" = { source = ".tmux.conf", mode = "symlink" }
 "~/.kubie/kubie.conf" = { source = ".kube/kubie.yaml", mode = "symlink" }
