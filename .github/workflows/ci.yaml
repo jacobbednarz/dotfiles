@@ -2,6 +2,11 @@ name: CI
 
 on:
   workflow_dispatch:
+    inputs:
+      install:
+        description: Install and verify every declared package and tool
+        type: boolean
+        default: false
   push:
     branches:
       - main
@@ -10,9 +15,42 @@ on:
       - main
 
 jobs:
-  installer:
+  tests:
     runs-on: macos-latest
+    timeout-minutes: 15
     steps:
     - uses: actions/checkout@v4
-    - name: Run installer
-      run: ./install.sh --dry-run --force-dotfiles --skip packages,mise-shell-activate,user,tools
+    - name: Install mise
+      run: curl https://mise.run | sh
+    - name: Install test tools
+      run: |
+        brew install fish gnupg python shellcheck shfmt ruff
+        git clone --depth 1 --branch v1.13.0 https://github.com/bats-core/bats-core.git "$RUNNER_TEMP/bats"
+        echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+        echo "$RUNNER_TEMP/bats/bin" >> "$GITHUB_PATH"
+    - name: Check test formatting and lint
+      run: |
+        shfmt -d -i 4 tests/*.bash tests/*.bats
+        shellcheck --shell=bash tests/*.bash tests/*.bats
+        ruff check tests/machine.py
+        ruff format --check tests/machine.py
+    - name: Test deployment and shell behaviour
+      run: bats --print-output-on-failure tests
+
+  installation:
+    if: github.event_name == 'workflow_dispatch' && inputs.install
+    runs-on: macos-latest
+    timeout-minutes: 120
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install mise and Bats
+      run: |
+        curl https://mise.run | sh
+        brew install python
+        git clone --depth 1 --branch v1.13.0 https://github.com/bats-core/bats-core.git "$RUNNER_TEMP/bats"
+        echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+        echo "$RUNNER_TEMP/bats/bin" >> "$GITHUB_PATH"
+    - name: Test package and tool installation
+      env:
+        DOTFILES_TEST_INSTALL: '1'
+      run: bats --print-output-on-failure tests/installation.bats

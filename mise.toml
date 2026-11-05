@@ -159,30 +159,45 @@ login_shell = "/opt/homebrew/bin/fish"
 [bootstrap.macos.dock]
 autohide = true
 
+# .gitconfig rewrites GitHub fetches to SSH, and ~/.ssh/config sends those to
+# gpg-agent's socket. The installer runs under bash rather than fish, so start
+# the agent here for the steps after dotfiles that fetch from GitHub. Hooks
+# don't get Homebrew on PATH, even once mise has installed packages with it.
+[bootstrap.hooks]
+post-dotfiles = "PATH=/opt/homebrew/bin:/usr/local/bin:/home/linuxbrew/.linuxbrew/bin:$PATH gpgconf --launch gpg-agent"
+
 [dotfiles]
 # ensure the root mise configuration is managed with mise
 "~/.config/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
 
-# all the platforms should read the same agents file
-"~/.claude/CLAUDE.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
-"~/.codex/AGENTS.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
-"~/.config/agents/AGENTS.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
-"~/.config/opencode/AGENTS.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
-"~/.gemini/GEMINI.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
-"~/.omp/agent/AGENTS.md" = { source = ".config/agents/AGENTS.md", mode = "symlink" }
+# The repository mirrors $HOME, so every file git tracks is linked to the same
+# path under ~. Untracked files never deploy.
+[dotfile_groups.home]
+# empty resolves to dotfiles.root itself; "." would leave a "/./" in every link
+root = ""
+manifest = "git"
+exclude = [
+  ".github",
+  ".gitignore",
+  ".rubocop.yml",
+  "README.md",
+  "mise.toml",
+  "tests",
+]
 
-"~/.config/fish/config.fish" = { source = ".config/fish/config.fish", mode = "symlink" }
-"~/.config/fish/functions" = { source = ".config/fish/functions", mode = "symlink" }
-"~/.config/ghostty" = { source = ".config/ghostty", mode = "symlink" }
-"~/.config/nvim" = { source = ".config/nvim", mode = "symlink" }
-"~/.config/zed/settings.json" = { source = ".config/zed/settings.json", mode = "symlink" }
-"~/.gitconfig" = { source = ".gitconfig", mode = "symlink" }
-"~/.gitconfig-personal" = { source = ".gitconfig-personal", mode = "symlink" }
-"~/.gnupg/gpg-agent.conf" = { source = ".gnupg/gpg-agent.conf", mode = "symlink" }
-"~/.gnupg/gpg.conf" = { source = ".gnupg/gpg.conf", mode = "symlink" }
-"~/.ssh/config" = { source = ".ssh/config", mode = "symlink" }
-"~/.tmux.conf" = { source = ".tmux.conf", mode = "symlink" }
-"~/.kubie/kubie.conf" = { source = ".kube/kubie.yaml", mode = "symlink" }
+[dotfile_groups.home.entries]
+# tools write new files into these, so link the whole directory to keep them
+# in the repository
+"~/.config/fish/functions" = { mode = "symlink" }
+"~/.config/ghostty" = { mode = "symlink" }
+"~/.config/nvim" = { mode = "symlink" }
+
+# all the platforms should read the same agents file
+"~/.claude/CLAUDE.md" = ".config/agents/AGENTS.md"
+"~/.codex/AGENTS.md" = ".config/agents/AGENTS.md"
+"~/.config/opencode/AGENTS.md" = ".config/agents/AGENTS.md"
+"~/.gemini/GEMINI.md" = ".config/agents/AGENTS.md"
+"~/.omp/agent/AGENTS.md" = ".config/agents/AGENTS.md"
 
 # launchd only reliably loads real files from LaunchAgents at login
-"~/Library/LaunchAgents/local.gpg-agent.plist" = { source = "Library/LaunchAgents/local.gpg-agent.plist", mode = "copy" }
+"~/Library/LaunchAgents/local.gpg-agent.plist" = { mode = "copy" }
