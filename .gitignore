@@ -48,3 +48,5 @@ swap-window
 .config/nats
 .config/mintlify/anonymous-id
 .config/github-copilot/versions.json
+.config/gh/hosts.yml
+.config/gcx/

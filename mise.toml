@@ -4,6 +4,9 @@ experimental = true
 [settings.dotfiles]
 root = "~/src/dotfiles"
 
+[settings.self_update]
+auto = true
+
 [tools]
 aws-vault = "7.14.0"
 awscli = { version = "2.36.40", symlink_bins = "true" }
@@ -18,18 +21,15 @@ rust = "latest"
 [bootstrap.brew.taps]
 "tobi/try" = "https://github.com/tobi/try"
 
-[bootstrap.repos]
-"~/.tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
-
 [bootstrap.packages]
 "brew-cask:1password" = "latest"
 "brew-cask:1password-cli" = "latest"
-"brew-cask:abue-ammar/tinycast/tinycast" = "latest"
+"brew-cask:tinycast" = "latest"
 "brew-cask:appcleaner" = "latest"
+"brew-cask:autodesk-fusion" = "latest"
 "brew-cask:bettertouchtool" = "latest"
 "brew-cask:claude-code" = "latest"
 "brew-cask:cleanshot" = "latest"
-"brew-cask:cmux" = "latest"
 "brew-cask:codex" = "latest"
 "brew-cask:ctrlspice/otel-desktop-viewer/otel-desktop-viewer" = "latest"
 "brew-cask:discord" = "latest"
@@ -64,9 +64,12 @@ rust = "latest"
 "brew-cask:wireshark-app" = "latest"
 "brew-cask:yubico-authenticator" = "latest"
 "brew-cask:zed" = "latest"
-"brew:autoconf" = "latest"
+"brew-cask:tuna" = "latest"
 "brew:ast-grep" = "latest"
+"brew:autoconf" = "latest"
 "brew:bashdb" = "latest"
+"brew:bats-core" = "latest"
+"brew:btop" = "latest"
 "brew:coreutils" = "latest"
 "brew:curl" = "latest"
 "brew:delve" = "latest"
@@ -95,6 +98,7 @@ rust = "latest"
 "brew:herdr" = "latest"
 "brew:hivemind" = "latest"
 "brew:htop" = "latest"
+"brew:hyperfine" = "latest"
 "brew:int128/kubelogin/kubelogin" = "latest"
 "brew:jacobbednarz/tap/cf-vault" = "latest"
 "brew:jacobbednarz/tap/dnstrace" = "latest"
@@ -135,8 +139,6 @@ rust = "latest"
 "brew:solargraph" = "latest"
 "brew:sqlite" = "latest"
 "brew:stern" = "latest"
-"brew:tmux" = "latest"
-"brew:tmuxinator" = "latest"
 "brew:tobi/try/try" = "latest"
 "brew:tree" = "latest"
 "brew:uv" = "latest"
