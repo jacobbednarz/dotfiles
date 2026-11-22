@@ -59,6 +59,8 @@ When editing existing code:
 - Do not reset, add or commit files that you did not modify. Don't assume a dirty tree needs to be committed or reset.
 - Do not ever commit to `main` or `master`. Branch off onto your own.
 - Do not ever co-sign commits. Just never.
+- Do not open GitHub PRs unless explicitly asked to.
+- Never include "AI information" (model, who generated, etc) inside of a PR description when asked to provide one.
 - When referencing code symbols, surround them in backticks. Example, "changed `SomeMethod` to accept two new parameters"
 - Follow conventional commit formats
 - Titles should be ~ 72 characters. Body should be hard wrapped at 80 characters (except for code blocks if present)
